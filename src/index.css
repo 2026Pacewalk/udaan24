@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 43 60% 99%;
+    --foreground: 218 46% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 218 46% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 46% 20%;
+    --primary: 45 100% 48%;
+    --primary-foreground: 218 46% 20%;
+    --secondary: 218 46% 20%;
+    --secondary-foreground: 43 60% 99%;
+    --muted: 220 20% 93%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 45 100% 95%;
+    --accent-foreground: 218 46% 20%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 20% 91%;
+    --input: 220 20% 91%;
+    --ring: 45 100% 48%;
+    --radius: 0.75rem;
+    --sidebar-background: 218 46% 20%;
+    --sidebar-foreground: 43 60% 99%;
+    --sidebar-primary: 45 100% 48%;
+    --sidebar-primary-foreground: 218 46% 20%;
+    --sidebar-accent: 218 40% 25%;
+    --sidebar-accent-foreground: 43 60% 99%;
+    --sidebar-border: 218 40% 25%;
+    --sidebar-ring: 45 100% 48%;
+  }
+
+  .dark {
+    --background: 218 46% 12%;
+    --foreground: 43 60% 99%;
+    --card: 218 46% 16%;
+    --card-foreground: 43 60% 99%;
+    --popover: 218 46% 16%;
+    --popover-foreground: 43 60% 99%;
+    --primary: 45 100% 48%;
+    --primary-foreground: 218 46% 20%;
+    --secondary: 218 46% 25%;
+    --secondary-foreground: 43 60% 99%;
+    --muted: 218 46% 20%;
+    --muted-foreground: 220 15% 65%;
+    --accent: 218 46% 20%;
+    --accent-foreground: 43 60% 99%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 218 46% 25%;
+    --input: 218 46% 25%;
+    --ring: 45 100% 48%;
+    --sidebar-background: 218 46% 10%;
+    --sidebar-foreground: 43 60% 99%;
+    --sidebar-primary: 45 100% 48%;
+    --sidebar-primary-foreground: 218 46% 20%;
+    --sidebar-accent: 218 46% 16%;
+    --sidebar-accent-foreground: 43 60% 99%;
+    --sidebar-border: 218 46% 16%;
+    --sidebar-ring: 45 100% 48%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FEFDFB;
+    color: #4A5568;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: #1B2A4A;
+  }
+
+  ::selection {
+    background-color: #F5B800;
+    color: #1B2A4A;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FEFDFB;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #E8EDF5;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .font-mono-accent {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .label-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #718096;
+  }
+
+  .btn-primary {
+    background-color: #F5B800;
+    color: #1B2A4A;
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #E0A800;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(245, 184, 0, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    border: 1.5px solid #1B2A4A;
+    color: #1B2A4A;
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #1B2A4A;
+    color: #FEFDFB;
+  }
+
+  .card-standard {
+    background: white;
+    border: 1px solid #E8EDF5;
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .card-standard:hover {
+    box-shadow: 0 8px 32px rgba(27, 42, 74, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .section-padding {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  .container-main {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .input-standard {
+    height: 48px;
+    background: #FEFDFB;
+    border: 1px solid #E8EDF5;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .input-standard:focus {
+    border-color: #F5B800;
+    box-shadow: 0 0 0 3px rgba(245, 184, 0, 0.15);
+    outline: none;
+  }
+
+  .input-standard::placeholder {
+    color: #A0AEC0;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee-scroll 30s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .status-badge-green {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #DCFCE7;
+    color: #166534;
+  }
+
+  .status-badge-yellow {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #FFF9E6;
+    color: #854D0E;
+  }
+
+  .status-badge-red {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #FEE2E2;
+    color: #991B1B;
+  }
+
+  .status-badge-blue {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #DBEAFE;
+    color: #1E40AF;
+  }
+}
+
+@layer utilities {
+  .text-navy {
+    color: #1B2A4A;
+  }
+
+  .text-body {
+    color: #4A5568;
+  }
+
+  .text-muted-custom {
+    color: #718096;
+  }
+
+  .bg-cream {
+    background-color: #FEFDFB;
+  }
+
+  .bg-navy {
+    background-color: #1B2A4A;
+  }
+
+  .bg-golden {
+    background-color: #F5B800;
+  }
+
+  .bg-golden-light {
+    background-color: #FFF9E6;
+  }
+
+  .border-light {
+    border-color: #E8EDF5;
+  }
+}
+
+@media (max-width: 768px) {
+  @layer components {
+    .section-padding {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+}
