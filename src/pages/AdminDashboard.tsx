@@ -10,7 +10,8 @@ import {
   LayoutDashboard, Users, BookOpen, Building2, CreditCard, ClipboardList,
   Award, Image, Download, MessageSquare, Bell, Settings, BarChart3,
   LogOut, Search, Plus, ChevronLeft, ChevronRight, Edit, Trash2, Eye,
-  X, Menu, Filter, CheckCircle, GraduationCap, Save, Loader2, Wallet, Send, UserPlus, ExternalLink
+  X, Menu, Filter, CheckCircle, GraduationCap, Save, Loader2, Wallet, Send, UserPlus, ExternalLink,
+  Database, RotateCcw, Cloud, HardDrive
 } from "lucide-react";
 
 // ─── Module Sidebar Items ───
@@ -24,6 +25,7 @@ const sidebarModules = [
   { id: "exams", label: "Exams", icon: ClipboardList },
   { id: "certificates", label: "Certificates", icon: Award },
   { id: "referrals", label: "Referrals & Wallet", icon: Wallet },
+  { id: "backups", label: "Backups", icon: Database, superAdminOnly: true },
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
@@ -165,6 +167,7 @@ export default function AdminDashboard() {
   }
 
   const newLeads = leadStats?.pendingEnquiries || 0;
+  const visibleModules = sidebarModules.filter((m) => !(m as any).superAdminOnly || user?.role === "super_admin");
 
   const renderContent = () => {
     switch (activeModule) {
@@ -177,6 +180,7 @@ export default function AdminDashboard() {
       case "exams": return <ExamsModule />;
       case "certificates": return <CertificatesModule />;
       case "referrals": return <ReferralsModule />;
+      case "backups": return <BackupsModule />;
       case "settings": return <SettingsModule />;
       default: return <DashboardModule />;
     }
@@ -200,7 +204,7 @@ export default function AdminDashboard() {
           </button>
         </div>
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-          {sidebarModules.map((m) => (
+          {visibleModules.map((m) => (
             <button key={m.id} onClick={() => { setActiveModule(m.id); setMobileSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-200 ${activeModule === m.id ? "bg-[#F5B800] text-[#1B2A4A]" : "text-white/60 hover:text-white hover:bg-white/5"}`}
               title={sidebarCollapsed ? m.label : undefined}>
@@ -230,7 +234,7 @@ export default function AdminDashboard() {
               <button onClick={() => setMobileSidebarOpen(false)} className="text-white"><X className="w-6 h-6" /></button>
             </div>
             <nav className="flex-1 px-3 space-y-1">
-              {sidebarModules.map((m) => (
+              {visibleModules.map((m) => (
                 <button key={m.id} onClick={() => { setActiveModule(m.id); setMobileSidebarOpen(false); }}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium ${activeModule === m.id ? "bg-[#F5B800] text-[#1B2A4A]" : "text-white/60"}`}>
                   <m.icon className="w-[18px] h-[18px]" /><span className="flex-1 text-left">{m.label}</span>
@@ -1437,6 +1441,134 @@ function SettingsModule() {
             </div>
           </div>
         ))}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════
+// BACKUPS MODULE (Super Admin only)
+// ═══════════════════════════════════════════════
+function fmtBytes(n: number) {
+  if (!n) return "—";
+  if (n < 1024) return `${n} B`;
+  if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
+  return `${(n / 1024 / 1024).toFixed(2)} MB`;
+}
+
+function BackupsModule() {
+  const { showToast } = useStore();
+  const utils = trpc.useUtils();
+  const [restoreTarget, setRestoreTarget] = useState<any>(null);
+  const [confirmText, setConfirmText] = useState("");
+
+  const { data, isLoading } = trpc.backups.list.useQuery();
+  const runMut = trpc.backups.run.useMutation({
+    onSuccess: (r) => {
+      utils.backups.list.invalidate();
+      showToast(r.uploadedDrive ? "Backup created & uploaded to Google Drive" : r.driveError ? `Backup saved (Drive failed: ${r.driveError})` : "Backup created", r.driveError ? "error" : "success");
+    },
+    onError: (e) => showToast(e.message, "error"),
+  });
+  const restoreMut = trpc.backups.restore.useMutation({
+    onSuccess: () => { utils.backups.list.invalidate(); showToast("Database restored from backup", "success"); setRestoreTarget(null); setConfirmText(""); },
+    onError: (e) => showToast(e.message, "error"),
+  });
+  const deleteMut = trpc.backups.delete.useMutation({
+    onSuccess: () => { utils.backups.list.invalidate(); showToast("Backup deleted", "success"); },
+    onError: (e) => showToast(e.message, "error"),
+  });
+  const downloadMut = trpc.backups.download.useMutation({
+    onSuccess: (r, vars: any) => {
+      const bytes = Uint8Array.from(atob(r.base64), (c) => c.charCodeAt(0));
+      const blob = new Blob([bytes], { type: "application/sql" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = vars.name || "backup.sql"; a.click();
+      URL.revokeObjectURL(a.href);
+    },
+    onError: (e) => showToast(e.message, "error"),
+  });
+
+  const items = data?.items || [];
+  const driveOk = data?.driveConfigured;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <h2 className="font-display text-[24px] font-semibold text-[#1B2A4A]">Database Backups</h2>
+          <p className="text-[13px] text-[#718096]">Daily automatic backups + on-demand backup & restore.</p>
+        </div>
+        <button onClick={() => runMut.mutate()} disabled={runMut.isPending} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#E0A800] transition-colors disabled:opacity-60">
+          {runMut.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Database className="w-4 h-4" />}Backup Now
+        </button>
+      </div>
+
+      {/* Drive status */}
+      <div className={`rounded-xl border p-4 flex items-start gap-3 ${driveOk ? "bg-[#F0FFF4] border-green-200" : "bg-[#FFF9E6] border-[#F5B800]/40"}`}>
+        <Cloud className={`w-5 h-5 flex-shrink-0 mt-0.5 ${driveOk ? "text-green-600" : "text-[#F5B800]"}`} />
+        <div className="text-[13px]">
+          {driveOk ? (
+            <><span className="font-semibold text-[#1B2A4A]">Google Drive connected.</span> <span className="text-[#4A5568]">Daily backups (02:00 UTC) upload automatically and stay safe off-server.</span></>
+          ) : (
+            <><span className="font-semibold text-[#1B2A4A]">Google Drive not configured.</span> <span className="text-[#4A5568]">Backups still run, but Railway storage is temporary — set the Google Drive env vars (see BACKUP_SETUP.md) so backups are kept safely.</span></>
+          )}
+        </div>
+      </div>
+
+      {/* Backups table */}
+      <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-[#F5F6FA]">
+              <tr className="text-left text-[11px] text-[#718096] uppercase tracking-wider">
+                <th className="p-4 font-medium">Backup File</th><th className="p-4 font-medium">Where</th><th className="p-4 font-medium">Size</th><th className="p-4 font-medium">Created</th><th className="p-4 font-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#E8EDF5]">
+              {isLoading ? <tr><td colSpan={5} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></td></tr> :
+                items.length === 0 ? <tr><td colSpan={5} className="p-8 text-center text-[#718096]">No backups yet — click “Backup Now”.</td></tr> :
+                  items.map((b: any) => (
+                    <tr key={b.id} className="hover:bg-[#F5F6FA]">
+                      <td className="p-4 text-[13px] font-mono text-[#1B2A4A]">{b.name}</td>
+                      <td className="p-4">
+                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium ${b.source === "drive" ? "bg-[#F0F5FF] text-[#0071E3]" : "bg-gray-100 text-gray-600"}`}>
+                          {b.source === "drive" ? <Cloud className="w-3 h-3" /> : <HardDrive className="w-3 h-3" />}{b.source === "drive" ? "Drive" : "Server"}
+                        </span>
+                      </td>
+                      <td className="p-4 text-[13px] text-[#4A5568]">{fmtBytes(b.sizeBytes)}</td>
+                      <td className="p-4 text-[12px] text-[#718096]">{b.createdTime ? new Date(b.createdTime).toLocaleString() : "—"}</td>
+                      <td className="p-4">
+                        <div className="flex items-center gap-1">
+                          {b.source === "drive" && b.link && <a href={b.link} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-lg hover:bg-[#E8EDF5] flex items-center justify-center" title="Open in Drive"><ExternalLink className="w-3.5 h-3.5 text-[#718096]" /></a>}
+                          <button onClick={() => downloadMut.mutate({ id: b.id, name: b.name } as any)} className="w-7 h-7 rounded-lg hover:bg-[#E8EDF5] flex items-center justify-center" title="Download"><Download className="w-3.5 h-3.5 text-[#718096]" /></button>
+                          <button onClick={() => { setRestoreTarget(b); setConfirmText(""); }} className="w-7 h-7 rounded-lg hover:bg-[#FFF9E6] flex items-center justify-center" title="Restore"><RotateCcw className="w-3.5 h-3.5 text-[#B8860B]" /></button>
+                          <button onClick={() => { if (confirm(`Delete backup ${b.name}?`)) deleteMut.mutate({ id: b.id }); }} className="w-7 h-7 rounded-lg hover:bg-red-50 flex items-center justify-center" title="Delete"><Trash2 className="w-3.5 h-3.5 text-red-400" /></button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Restore confirm modal */}
+      {restoreTarget && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" onClick={() => setRestoreTarget(null)}>
+          <div className="absolute inset-0 bg-[rgba(27,42,74,0.5)]" />
+          <div className="relative bg-white rounded-2xl w-full max-w-[460px] z-10 p-6" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center gap-3 mb-3"><div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center"><RotateCcw className="w-5 h-5 text-red-500" /></div><h3 className="font-body text-[16px] font-semibold text-[#1B2A4A]">Restore Database</h3></div>
+            <p className="text-[13px] text-[#4A5568] mb-2">This will <b>replace ALL current data</b> with the contents of:</p>
+            <p className="text-[12px] font-mono bg-[#F5F6FA] rounded-lg px-3 py-2 mb-3 break-all">{restoreTarget.name}</p>
+            <p className="text-[12px] text-[#718096] mb-3">A safety snapshot of the current database is taken automatically first. Type <b>RESTORE</b> to confirm.</p>
+            <input value={confirmText} onChange={(e) => setConfirmText(e.target.value)} placeholder="RESTORE" className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] mb-4" />
+            <div className="flex gap-3">
+              <button onClick={() => setRestoreTarget(null)} className="btn-secondary flex-1 py-2.5 text-[13px]">Cancel</button>
+              <button onClick={() => restoreMut.mutate({ id: restoreTarget.id, confirm: "RESTORE" })} disabled={confirmText !== "RESTORE" || restoreMut.isPending} className="flex-1 py-2.5 text-[13px] rounded-lg font-semibold text-white bg-red-500 hover:bg-red-600 disabled:opacity-50 flex items-center justify-center gap-2">{restoreMut.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}Restore</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

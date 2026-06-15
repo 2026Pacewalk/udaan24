@@ -43,3 +43,5 @@ coverage/
 .localdb/
 # Local agent / editor config
 .claude/
+# Generated DB backups
+backups/

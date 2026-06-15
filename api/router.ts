@@ -15,6 +15,7 @@ import { announcementRouter } from "./routers/announcements";
 import { galleryRouter } from "./routers/gallery";
 import { downloadRouter } from "./routers/downloads";
 import { referralRouter } from "./routers/referrals";
+import { backupRouter } from "./routers/backups";
 import { createRouter, publicQuery } from "./middleware";
 
 export const appRouter = createRouter({
@@ -36,6 +37,7 @@ export const appRouter = createRouter({
   gallery: galleryRouter,
   downloads: downloadRouter,
   referrals: referralRouter,
+  backups: backupRouter,
 });
 
 export type AppRouter = typeof appRouter;

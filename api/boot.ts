@@ -33,4 +33,8 @@ if (env.isProduction) {
   serve({ fetch: app.fetch, port }, () => {
     console.log(`Server running on http://localhost:${port}/`);
   });
+
+  // Daily database backup scheduler (uploads to Google Drive if configured).
+  const { startDailyBackupScheduler } = await import("./lib/backup-scheduler");
+  startDailyBackupScheduler();
 }
