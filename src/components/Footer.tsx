@@ -142,6 +142,11 @@ export default function Footer() {
         <div className="container-main py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[13px] text-white/40">
             &copy; {new Date().getFullYear()} Udaan24.com - AI Coaching Institute Kotkapura. All rights reserved.
+            <span className="mx-2 text-white/20">|</span>
+            Designed &amp; Developed by{' '}
+            <a href="https://pacewalk.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#F5B800] font-medium transition-colors">
+              PACEWALK
+            </a>
           </p>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="text-[13px] text-white/40 hover:text-white/70 transition-colors">
