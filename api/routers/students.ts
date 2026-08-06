@@ -4,6 +4,7 @@ import { createRouter, publicQuery, adminQuery, superAdminQuery } from "../middl
 import { getDb } from "../queries/connection";
 import { students, courses, centers, attendance, results, feePayments, certificates, notifications, studentReferrals, studentSiblings, admissionFormLinks } from "@db/schema";
 import { eq, like, and, or, inArray, desc, sql } from "drizzle-orm";
+import { assertValidPhoto } from "../lib/validate-image";
 
 // ─── Credential generators (official students created/approved by Super Admin) ───
 const genRollNumber = () => `UAN24${Date.now().toString(36).toUpperCase()}`;
@@ -162,6 +163,7 @@ export const studentRouter = createRouter({
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
+      assertValidPhoto(input.photo);
       const rollNumber = `UAN24${Date.now().toString(36).toUpperCase()}`;
       const result = await db.insert(students).values({
         ...input, rollNumber, password: "student123",
@@ -182,6 +184,7 @@ export const studentRouter = createRouter({
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
+      assertValidPhoto(input.photo);
       const [s] = await db.select().from(students).where(eq(students.id, input.id));
       if (!s || s.centerId !== input.centerId) {
         throw new TRPCError({ code: "FORBIDDEN", message: "This student does not belong to your centre" });
@@ -221,6 +224,7 @@ export const studentRouter = createRouter({
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
+      assertValidPhoto(input.photo);
       const { studentId, step, siblings, ...fields } = input;
       // persist provided student fields
       const data: Record<string, any> = {};
@@ -328,6 +332,7 @@ export const studentRouter = createRouter({
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
+      assertValidPhoto(input.photo);
       const rollNumber = input.rollNumber || genRollNumber();
       const username = await makeUsername(db, input.name, rollNumber);
       const password = genTempPassword();
@@ -383,6 +388,7 @@ export const studentRouter = createRouter({
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
+      assertValidPhoto(input.photo);
       const { id, ...data } = input;
       await db.update(students).set(data).where(eq(students.id, id));
       return { success: true };

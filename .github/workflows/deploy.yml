@@ -31,6 +31,7 @@ jobs:
             git reset --hard origin/main
             npm ci
             npm run build
+            npx --yes tsx db/migrate-media-columns.ts
             pm2 restart udaan24 || pm2 start npm --name udaan24 -- start
             pm2 save
             echo "✅ Deployed $(git rev-parse --short HEAD)"

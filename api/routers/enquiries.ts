@@ -4,6 +4,7 @@ import { createRouter, publicQuery, adminQuery, superAdminQuery } from "../middl
 import { getDb } from "../queries/connection";
 import { enquiries, centers, users, students, studentSiblings } from "@db/schema";
 import { eq, like, or, and, desc, sql, gte, lte, isNull, isNotNull } from "drizzle-orm";
+import { assertValidPhoto } from "../lib/validate-image";
 
 const LEAD_STATUS = ["new", "contacted", "follow_up", "converted", "not_interested", "closed"] as const;
 
@@ -127,6 +128,8 @@ export const enquiryRouter = createRouter({
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
+      // Validate the optional photo up-front (friendly message, never a raw error).
+      assertValidPhoto(input.photo);
       // Guard: lead must exist and not already be converted (prevents double conversion / duplicate students).
       const [lead] = await db.select().from(enquiries).where(eq(enquiries.id, input.id));
       if (!lead) throw new TRPCError({ code: "NOT_FOUND", message: "Lead not found" });
@@ -145,31 +148,33 @@ export const enquiryRouter = createRouter({
       let password = "";
       for (let i = 0; i < 8; i++) password += pwChars[Math.floor(Math.random() * pwChars.length)];
 
-      const res = await db.insert(students).values({
-        ...studentFields, rollNumber, username, password,
-        status: "active", feeStatus: input.feeStatus || "pending",
-        createdByAdmin: true, admissionDate: new Date().toISOString().slice(0, 10),
-      });
-      const studentId = Number(res[0].insertId);
+      // Transaction: the student, siblings, lead-link and centre count either all
+      // commit or all roll back — no half-converted / duplicate records.
+      const studentId = await db.transaction(async (tx) => {
+        const res = await tx.insert(students).values({
+          ...studentFields, rollNumber, username, password,
+          status: "active", feeStatus: input.feeStatus || "pending",
+          createdByAdmin: true, admissionDate: new Date().toISOString().slice(0, 10),
+        });
+        const sid = Number(res[0].insertId);
 
-      // Optional siblings
-      if (siblings?.length) {
-        for (const s of siblings) {
-          if (s.name) await db.insert(studentSiblings).values({
-            studentId, siblingName: s.name, siblingRelation: s.relation, siblingAge: s.age, siblingQualification: s.qualification,
-          });
+        if (siblings?.length) {
+          for (const s of siblings) {
+            if (s.name) await tx.insert(studentSiblings).values({
+              studentId: sid, siblingName: s.name, siblingRelation: s.relation, siblingAge: s.age, siblingQualification: s.qualification,
+            });
+          }
         }
-      }
 
-      // Mark lead converted + link the student.
-      await db.update(enquiries).set({
-        status: "converted", convertedStudentId: studentId, convertedAt: new Date(),
-      }).where(eq(enquiries.id, id));
+        await tx.update(enquiries).set({
+          status: "converted", convertedStudentId: sid, convertedAt: new Date(),
+        }).where(eq(enquiries.id, id));
 
-      // Keep centre student count roughly in sync (best-effort).
-      if (input.centerId) {
-        await db.update(centers).set({ studentCount: sql`${centers.studentCount} + 1` }).where(eq(centers.id, input.centerId));
-      }
+        if (input.centerId) {
+          await tx.update(centers).set({ studentCount: sql`${centers.studentCount} + 1` }).where(eq(centers.id, input.centerId));
+        }
+        return sid;
+      });
 
       return { success: true, studentId, rollNumber, username, password };
     }),

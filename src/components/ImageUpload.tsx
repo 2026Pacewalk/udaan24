@@ -37,7 +37,8 @@ export default function ImageUpload({ value, onChange, label = 'Student Image', 
     const f = e.target.files?.[0];
     e.target.value = ''; // allow re-selecting the same file
     if (!f) return;
-    if (!ALLOWED.includes(f.type)) { setErr('Please upload a JPG, PNG or WEBP image.'); return; }
+    if (!ALLOWED.includes(f.type)) { setErr('Please upload a JPG, JPEG, PNG or WEBP image.'); return; }
+    if (f.size > 15 * 1024 * 1024) { setErr('Image is too large. Please choose a file under 15 MB.'); return; }
     setErr(''); setBusy(true);
     try { onChange(await resizeImage(f)); } catch { setErr('Could not process the image.'); }
     setBusy(false);
