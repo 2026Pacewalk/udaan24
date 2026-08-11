@@ -148,12 +148,18 @@ export default function Footer() {
               PACEWALK
             </a>
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link to="/privacy" className="text-[13px] text-white/40 hover:text-white/70 transition-colors">
               Privacy Policy
             </Link>
             <Link to="/terms" className="text-[13px] text-white/40 hover:text-white/70 transition-colors">
-              Terms of Use
+              Terms &amp; Conditions
+            </Link>
+            <Link to="/refund" className="text-[13px] text-white/40 hover:text-white/70 transition-colors">
+              Refund Policy
+            </Link>
+            <Link to="/shipping" className="text-[13px] text-white/40 hover:text-white/70 transition-colors">
+              Shipping &amp; Delivery
             </Link>
             <button
               onClick={scrollToTop}

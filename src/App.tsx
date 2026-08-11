@@ -18,6 +18,10 @@ import StudentPortal from './pages/StudentPortal'
 import CentreDashboard from './pages/CentreDashboard'
 import AdminDashboard from './pages/AdminDashboard'
 import Login from './pages/Login'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsConditions from './pages/TermsConditions'
+import RefundPolicy from './pages/RefundPolicy'
+import ShippingPolicy from './pages/ShippingPolicy'
 import NotFound from './pages/NotFound'
 
 // Ensures every route change starts scrolled to the top of the page.
@@ -45,6 +49,17 @@ export default function App() {
         <Route path="/blog/:slug" element={<Blog />} />
         <Route path="/franchise" element={<Franchise />} />
         <Route path="/downloads" element={<Downloads />} />
+
+        {/* Legal / policy pages (required for payment gateway) */}
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
+        <Route path="/refund" element={<RefundPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/cancellation-and-refund-policy" element={<RefundPolicy />} />
+        <Route path="/shipping" element={<ShippingPolicy />} />
+        <Route path="/shipping-policy" element={<ShippingPolicy />} />
 
         {/* Registration + referral capture */}
         <Route path="/register" element={<Register />} />
