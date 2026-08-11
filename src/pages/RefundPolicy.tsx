@@ -5,7 +5,7 @@ export default function RefundPolicy() {
     <LegalPage title="Cancellation &amp; Refund Policy" subtitle="Our policy on course cancellations, refunds, and failed payments." updated="August 2026">
       <BusinessBlock />
 
-      <P>This Cancellation &amp; Refund Policy applies to fees paid to Udaan24 AI Institute, operated by Udaan24 Educational Society, Kotkapura, for enrolment in our courses and programmes. Please read it carefully before making a payment.</P>
+      <P>This Cancellation &amp; Refund Policy applies to fees paid to Udaan24 AI Institute, run by Udaan24 Educational Society, Kotkapura, for enrolment in our courses and programmes. Please read it carefully before making a payment.</P>
 
       <H2>Cancellation by the Student</H2>
       <UL>
@@ -39,7 +39,7 @@ export default function RefundPolicy() {
       </UL>
 
       <H2>Contact for Refunds</H2>
-      <P>For any cancellation or refund request, contact Udaan24 AI Institute at <b>info@udaan24.com</b> or <b>+91 97808 43440</b>, Near Bus Stand, Kotkapura, Faridkot, Punjab 151204. We aim to respond to every request within 3 business days.</P>
+      <P>For any cancellation or refund request, contact Udaan24 AI Institute at <b>info@udaan24.com</b> or <b>+91 97808 43440</b>, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204. We aim to respond to every request within 3 business days.</P>
     </LegalPage>
   );
 }

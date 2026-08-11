@@ -42,8 +42,8 @@ export const UL = ({ children }: { children: ReactNode }) => (
 export const BusinessBlock = () => (
   <div className="bg-[#F5F6FA] border border-[#E8EDF5] rounded-xl p-5 mb-8 text-[14px] text-[#4A5568] leading-[1.7]">
     <p className="font-semibold text-[#1B2A4A] mb-1">Udaan24 AI Institute</p>
-    <p>Operated by <b>Udaan24 Educational Society</b>, Kotkapura.</p>
-    <p>Near Bus Stand, Kotkapura, Faridkot, Punjab 151204, India</p>
+    <p>Run By <b>Udaan24 Educational Society</b>, Kotkapura.</p>
+    <p>Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204, India</p>
     <p>Phone / WhatsApp: +91 97808 43440 &nbsp;·&nbsp; Email: info@udaan24.com</p>
     <p>Website: https://udaan24.com</p>
   </div>

@@ -5,7 +5,7 @@ export default function TermsConditions() {
     <LegalPage title="Terms &amp; Conditions" subtitle="The terms that govern your use of Udaan24 AI Institute's website and services." updated="August 2026">
       <BusinessBlock />
 
-      <P>These Terms &amp; Conditions ("Terms") govern your access to and use of the website https://udaan24.com and the educational services offered by Udaan24 AI Institute, operated by Udaan24 Educational Society, Kotkapura ("Institute", "we", "us"). By accessing our website, enrolling in a course, or making a payment, you agree to these Terms.</P>
+      <P>These Terms &amp; Conditions ("Terms") govern your access to and use of the website https://udaan24.com and the educational services offered by Udaan24 AI Institute, run by Udaan24 Educational Society, Kotkapura ("Institute", "we", "us"). By accessing our website, enrolling in a course, or making a payment, you agree to these Terms.</P>
 
       <H2>Our Services</H2>
       <P>Udaan24 AI Institute provides education, coaching, and training programmes in computer, AI, programming, digital marketing, accounting, and related fields, delivered through classroom (offline), online, or hybrid modes, along with study materials, assessments, and certificates.</P>
@@ -51,7 +51,7 @@ export default function TermsConditions() {
       <P>We may revise these Terms from time to time. Continued use of our website or services after changes constitutes acceptance of the revised Terms.</P>
 
       <H2>Contact Us</H2>
-      <P>For any questions about these Terms, contact us at info@udaan24.com or +91 97808 43440, Near Bus Stand, Kotkapura, Faridkot, Punjab 151204.</P>
+      <P>For any questions about these Terms, contact us at info@udaan24.com or +91 97808 43440, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
     </LegalPage>
   );
 }

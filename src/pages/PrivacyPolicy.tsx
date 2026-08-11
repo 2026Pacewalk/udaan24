@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
     <LegalPage title="Privacy Policy" subtitle="How Udaan24 AI Institute collects, uses, and protects your information." updated="August 2026">
       <BusinessBlock />
 
-      <P>This Privacy Policy explains how Udaan24 AI Institute, operated by Udaan24 Educational Society, Kotkapura ("we", "us", "our"), collects, uses, discloses, and safeguards your information when you visit https://udaan24.com, enrol in our courses, or use our services. By using our website and services, you agree to the practices described in this policy.</P>
+      <P>This Privacy Policy explains how Udaan24 AI Institute, run by Udaan24 Educational Society, Kotkapura ("we", "us", "our"), collects, uses, discloses, and safeguards your information when you visit https://udaan24.com, enrol in our courses, or use our services. By using our website and services, you agree to the practices described in this policy.</P>
 
       <H2>Information We Collect</H2>
       <UL>
@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
       <P>We may update this Privacy Policy from time to time. The latest version will always be available on this page with its effective date.</P>
 
       <H2>Contact Us</H2>
-      <P>For any questions about this Privacy Policy or your data, contact Udaan24 AI Institute at info@udaan24.com or +91 97808 43440, Near Bus Stand, Kotkapura, Faridkot, Punjab 151204.</P>
+      <P>For any questions about this Privacy Policy or your data, contact Udaan24 AI Institute at info@udaan24.com or +91 97808 43440, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
     </LegalPage>
   );
 }
