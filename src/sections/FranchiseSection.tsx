@@ -15,7 +15,7 @@ export default function FranchiseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
           <div>
-            <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#F5B800] uppercase mb-4 block">
+            <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#16A34A] uppercase mb-4 block">
               Partner With Us
             </span>
             <h2 className="font-display text-[36px] md:text-[48px] font-semibold text-white leading-[1.1] tracking-[-1.5px] mb-6">
@@ -30,8 +30,8 @@ export default function FranchiseSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
               {benefits.map((b) => (
                 <div key={b.title} className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[rgba(245,184,0,0.15)] flex items-center justify-center flex-shrink-0">
-                    <b.icon className="w-5 h-5 text-[#F5B800]" />
+                  <div className="w-10 h-10 rounded-lg bg-[rgba(22,163,74,0.15)] flex items-center justify-center flex-shrink-0">
+                    <b.icon className="w-5 h-5 text-[#16A34A]" />
                   </div>
                   <div>
                     <h4 className="text-[15px] font-semibold text-white mb-0.5">{b.title}</h4>
@@ -48,7 +48,7 @@ export default function FranchiseSection() {
               </Link>
               <a
                 href="tel:+919876543210"
-                className="flex items-center justify-center gap-2 text-white/70 hover:text-[#F5B800] transition-colors text-[14px] font-medium border border-white/20 rounded-full px-8 py-3.5"
+                className="flex items-center justify-center gap-2 text-white/70 hover:text-[#16A34A] transition-colors text-[14px] font-medium border border-white/20 rounded-full px-8 py-3.5"
               >
                 <Phone className="w-4 h-4" />
                 Call: +91 97808 43440
@@ -70,22 +70,22 @@ export default function FranchiseSection() {
             {/* Floating Stats */}
             <div className="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-3">
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/10">
-                <div className="font-display text-[22px] font-semibold text-[#F5B800]">2,000+</div>
+                <div className="font-display text-[22px] font-semibold text-[#16A34A]">2,000+</div>
                 <div className="text-[11px] text-white/60 uppercase tracking-wider">AI Students</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/10">
-                <div className="font-display text-[22px] font-semibold text-[#F5B800]">15+</div>
+                <div className="font-display text-[22px] font-semibold text-[#16A34A]">15+</div>
                 <div className="text-[11px] text-white/60 uppercase tracking-wider">AI Courses</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/10">
-                <div className="font-display text-[22px] font-semibold text-[#F5B800]">98%</div>
+                <div className="font-display text-[22px] font-semibold text-[#16A34A]">98%</div>
                 <div className="text-[11px] text-white/60 uppercase tracking-wider">Placement</div>
               </div>
             </div>
 
             {/* Location Pin */}
             <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-md rounded-lg px-4 py-2.5 border border-white/10 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#F5B800]" />
+              <MapPin className="w-4 h-4 text-[#16A34A]" />
               <span className="text-[12px] text-white font-medium">Now in Punjab</span>
             </div>
           </div>

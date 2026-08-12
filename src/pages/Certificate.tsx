@@ -14,7 +14,7 @@ export default function Certificate() {
   const { id } = useParams();
   const { data, isLoading } = trpc.certificates.detail.useQuery({ id: Number(id) }, { enabled: !!id });
 
-  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
   if (!data?.cert) return <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#F5F6FA]"><p className="text-[#718096]">Certificate not found.</p><Link to="/" className="text-[#0071E3]">Home</Link></div>;
 
   const { cert, student, course, centre } = data;
@@ -32,15 +32,15 @@ export default function Certificate() {
 
       {/* A4 landscape ≈ 1123 × 794 px @96dpi */}
       <div className="cert-sheet bg-white mx-auto shadow-[0_10px_40px_rgba(27,42,74,0.18)]" style={{ width: 1123, maxWidth: '100%', minHeight: 794 }}>
-        <div className="m-[14px] border-[3px] border-[#F5B800] h-[calc(100%-28px)]" style={{ minHeight: 766 }}>
+        <div className="m-[14px] border-[3px] border-[#16A34A] h-[calc(100%-28px)]" style={{ minHeight: 766 }}>
           <div className="border border-[#1B2A4A]/30 m-[8px] px-12 py-10 relative" style={{ minHeight: 742 }}>
             {/* Header */}
             <div className="flex flex-col items-center text-center">
               <div className="flex items-center gap-3 mb-1">
-                <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
+                <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
                 <div className="text-left">
                   <p className="font-display text-[26px] font-bold text-[#1B2A4A] leading-none">Udaan24.com</p>
-                  <p className="text-[12px] tracking-[0.2em] text-[#F5B800] uppercase">AI Coaching Institute</p>
+                  <p className="text-[12px] tracking-[0.2em] text-[#16A34A] uppercase">AI Coaching Institute</p>
                 </div>
               </div>
               <p className="text-[12px] text-[#718096]">Kotkapura, Punjab</p>

@@ -28,11 +28,11 @@ export default function Admission() {
     }
   }, [token, tokenInfo.isLoading, tokenInfo.data]);
 
-  if (resolving) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (resolving) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
   if (!studentId) return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F6FA] gap-3 p-6 text-center">
       <p className="text-[15px] text-[#1B2A4A] font-medium">{token ? 'This admission link is invalid or expired.' : 'Please log in to complete your admission.'}</p>
-      <Link to="/student/login" className="bg-[#F5B800] text-[#1B2A4A] px-5 py-2.5 rounded-lg text-[13px] font-semibold">Student Login</Link>
+      <Link to="/student/login" className="bg-[#16A34A] text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold">Student Login</Link>
     </div>
   );
   return <AdmissionWizard studentId={studentId} centreLock={centreLock} onDone={() => { if (!token) navigate('/student'); }} />;
@@ -67,7 +67,7 @@ function AdmissionWizard({ studentId, centreLock, onDone }: { studentId: number;
   const saveStep = trpc.students.saveAdmissionStep.useMutation();
   const submit = trpc.students.submitAdmission.useMutation({ onSuccess: () => { setDone(true); utils.students.dashboard.invalidate(); } });
 
-  if (isLoading || !form) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (isLoading || !form) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
 
   const set = (k: string, v: any) => setForm({ ...form, [k]: v });
   const centre = centreLock?.name ? centreLock : data?.centre;
@@ -110,7 +110,7 @@ function AdmissionWizard({ studentId, centreLock, onDone }: { studentId: number;
     await submit.mutateAsync({ studentId });
   };
 
-  const inputCls = "w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]";
+  const inputCls = "w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]";
   const label = (t: string, req = false) => <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">{t}{req && <span className="text-red-500"> *</span>}</label>;
 
   if (done) return (
@@ -119,7 +119,7 @@ function AdmissionWizard({ studentId, centreLock, onDone }: { studentId: number;
         <div className="w-16 h-16 rounded-full bg-[#F0FFF4] flex items-center justify-center mx-auto mb-4"><CheckCircle className="w-8 h-8 text-[#22C55E]" /></div>
         <h2 className="font-display text-[22px] font-semibold text-[#1B2A4A] mb-2">Admission Details Completed!</h2>
         <p className="text-[14px] text-[#4A5568] mb-6">Your admission details have been saved successfully.</p>
-        <button onClick={onDone} className="bg-[#F5B800] text-[#1B2A4A] px-6 py-2.5 rounded-lg text-[13px] font-semibold">Continue</button>
+        <button onClick={onDone} className="bg-[#16A34A] text-white px-6 py-2.5 rounded-lg text-[13px] font-semibold">Continue</button>
       </div>
     </div>
   );
@@ -128,7 +128,7 @@ function AdmissionWizard({ studentId, centreLock, onDone }: { studentId: number;
     <div className="min-h-screen bg-[#F5F6FA] py-8 px-4">
       <div className="max-w-[680px] mx-auto">
         <div className="flex items-center gap-2.5 justify-center mb-6">
-          <div className="w-10 h-10 rounded-lg bg-[#F5B800] flex items-center justify-center"><GraduationCap className="w-6 h-6 text-[#1B2A4A]" /></div>
+          <div className="w-10 h-10 rounded-lg bg-[#16A34A] flex items-center justify-center"><GraduationCap className="w-6 h-6 text-[#1B2A4A]" /></div>
           <span className="font-display text-[18px] font-semibold text-[#1B2A4A]">Udaan24 Admission Form</span>
         </div>
 
@@ -137,7 +137,7 @@ function AdmissionWizard({ studentId, centreLock, onDone }: { studentId: number;
           {STEPS.map((s, i) => (
             <div key={s} className="flex items-center flex-1 last:flex-none">
               <div className="flex flex-col items-center">
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-semibold ${step > i + 1 ? 'bg-[#22C55E] text-white' : step === i + 1 ? 'bg-[#F5B800] text-[#1B2A4A]' : 'bg-[#E8EDF5] text-[#718096]'}`}>{step > i + 1 ? '✓' : i + 1}</div>
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-semibold ${step > i + 1 ? 'bg-[#22C55E] text-white' : step === i + 1 ? 'bg-[#16A34A] text-white' : 'bg-[#E8EDF5] text-[#718096]'}`}>{step > i + 1 ? '✓' : i + 1}</div>
                 <span className="text-[11px] text-[#718096] mt-1 hidden sm:block whitespace-nowrap">{s}</span>
               </div>
               {i < STEPS.length - 1 && <div className={`flex-1 h-0.5 mx-2 ${step > i + 1 ? 'bg-[#22C55E]' : 'bg-[#E8EDF5]'}`} />}
@@ -206,7 +206,7 @@ function AdmissionWizard({ studentId, centreLock, onDone }: { studentId: number;
           <div className="flex items-center justify-between gap-3 mt-6 pt-4 border-t border-[#E8EDF5]">
             <button onClick={() => { setErr(''); setStep(Math.max(1, step - 1)); }} disabled={step === 1} className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-[13px] font-medium border border-[#E8EDF5] text-[#4A5568] disabled:opacity-40"><ArrowLeft className="w-4 h-4" />Back</button>
             {step < 3 ? (
-              <button onClick={next} disabled={saveStep.isPending} className="flex items-center gap-1.5 bg-[#F5B800] text-[#1B2A4A] px-5 py-2.5 rounded-lg text-[13px] font-semibold disabled:opacity-60">{saveStep.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}Save & Continue<ArrowRight className="w-4 h-4" /></button>
+              <button onClick={next} disabled={saveStep.isPending} className="flex items-center gap-1.5 bg-[#16A34A] text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold disabled:opacity-60">{saveStep.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}Save & Continue<ArrowRight className="w-4 h-4" /></button>
             ) : (
               <button onClick={finalSubmit} disabled={submit.isPending || saveStep.isPending} className="flex items-center gap-1.5 bg-[#22C55E] text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold disabled:opacity-60">{(submit.isPending || saveStep.isPending) ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}Submit Admission</button>
             )}

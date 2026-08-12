@@ -48,7 +48,7 @@ export default function NewsSection() {
               AI Coaching Updates
             </h2>
           </div>
-          <Link to="/blog" className="flex items-center gap-2 text-[14px] font-medium text-[#1B2A4A] hover:text-[#F5B800] transition-colors">
+          <Link to="/blog" className="flex items-center gap-2 text-[14px] font-medium text-[#1B2A4A] hover:text-[#16A34A] transition-colors">
             View All Articles
             <ArrowRight className="w-4 h-4" />
           </Link>
@@ -78,7 +78,7 @@ export default function NewsSection() {
                     {post.date}
                   </span>
                 </div>
-                <h3 className="font-body text-[17px] font-semibold text-[#1B2A4A] mb-2 leading-tight group-hover:text-[#F5B800] transition-colors">
+                <h3 className="font-body text-[17px] font-semibold text-[#1B2A4A] mb-2 leading-tight group-hover:text-[#16A34A] transition-colors">
                   {post.title}
                 </h3>
                 <p className="text-[13px] text-[#4A5568] leading-relaxed mb-4 line-clamp-2">
@@ -86,7 +86,7 @@ export default function NewsSection() {
                 </p>
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="flex items-center gap-1.5 text-[13px] font-medium text-[#1B2A4A] hover:text-[#F5B800] transition-colors"
+                  className="flex items-center gap-1.5 text-[13px] font-medium text-[#1B2A4A] hover:text-[#16A34A] transition-colors"
                 >
                   Read More
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

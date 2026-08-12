@@ -52,7 +52,7 @@ function Pagination({ page, pages, onChange }: { page: number; pages: number; on
           <ChevronLeft className="w-4 h-4 text-[#718096]" />
         </button>
         {Array.from({ length: Math.min(pages, 5) }, (_, i) => i + 1).map((p) => (
-          <button key={p} onClick={() => onChange(p)} className={`w-8 h-8 rounded-lg flex items-center justify-center text-[12px] font-medium ${p === page ? "bg-[#F5B800] text-[#1B2A4A]" : "border border-[#E8EDF5] text-[#718096]"}`}>{p}</button>
+          <button key={p} onClick={() => onChange(p)} className={`w-8 h-8 rounded-lg flex items-center justify-center text-[12px] font-medium ${p === page ? "bg-[#16A34A] text-white" : "border border-[#E8EDF5] text-[#718096]"}`}>{p}</button>
         ))}
         <button disabled={page >= pages} onClick={() => onChange(page + 1)} className="w-8 h-8 rounded-lg border border-[#E8EDF5] flex items-center justify-center disabled:opacity-30">
           <ChevronRight className="w-4 h-4 text-[#718096]" />
@@ -68,7 +68,7 @@ function FormInput({ label, name, value, onChange, type = "text", required = fal
     <div>
       <label className="font-body text-[13px] font-medium text-[#1B2A4A] mb-1.5 block">{label}{required && <span className="text-red-500"> *</span>}</label>
       <input type={type} name={name} value={value || ""} onChange={onChange} required={required} placeholder={placeholder}
-        className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] text-[#1B2A4A] outline-none focus:border-[#F5B800] focus:ring-2 focus:ring-[#F5B800]/20 transition-all" />
+        className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] text-[#1B2A4A] outline-none focus:border-[#16A34A] focus:ring-2 focus:ring-[#16A34A]/20 transition-all" />
     </div>
   );
 }
@@ -78,7 +78,7 @@ function FormSelect({ label, name, value, onChange, options, required = false }:
     <div>
       <label className="font-body text-[13px] font-medium text-[#1B2A4A] mb-1.5 block">{label}{required && <span className="text-red-500"> *</span>}</label>
       <select name={name} value={value || ""} onChange={onChange} required={required}
-        className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] text-[#1B2A4A] outline-none focus:border-[#F5B800] focus:ring-2 focus:ring-[#F5B800]/20 transition-all">
+        className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] text-[#1B2A4A] outline-none focus:border-[#16A34A] focus:ring-2 focus:ring-[#16A34A]/20 transition-all">
         <option value="">Select {label}</option>
         {options.map((o: any) => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
@@ -125,7 +125,7 @@ function CredentialsModal({ creds, onClose }: { creds: { rollNumber: string; use
     <div className="fixed inset-0 z-[210] flex items-center justify-center p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-[rgba(27,42,74,0.5)]" />
       <div className="relative bg-white rounded-2xl w-full max-w-[440px] z-10 overflow-hidden" onClick={(e) => e.stopPropagation()}>
-        <div className="bg-[#1B2A4A] px-6 py-5 text-center"><div className="w-12 h-12 rounded-full bg-[#F5B800]/20 flex items-center justify-center mx-auto mb-2"><CheckCircle className="w-6 h-6 text-[#F5B800]" /></div><h3 className="font-body text-[16px] font-semibold text-white">Student Credentials Generated</h3><p className="text-[12px] text-white/60 mt-1">Share these login details with the student.</p></div>
+        <div className="bg-[#1B2A4A] px-6 py-5 text-center"><div className="w-12 h-12 rounded-full bg-[#16A34A]/20 flex items-center justify-center mx-auto mb-2"><CheckCircle className="w-6 h-6 text-[#16A34A]" /></div><h3 className="font-body text-[16px] font-semibold text-white">Student Credentials Generated</h3><p className="text-[12px] text-white/60 mt-1">Share these login details with the student.</p></div>
         <div className="p-6 space-y-4">
           <div className="bg-[#F5F6FA] rounded-xl p-4">
             <Line k="Student ID" v={creds.rollNumber} />
@@ -155,13 +155,13 @@ export default function AdminDashboard() {
 
   // Block render until auth resolves; non-admins are redirected to /login.
   if (authLoading) {
-    return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+    return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
   }
   if (!user || (user.role !== "admin" && user.role !== "super_admin")) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F6FA] gap-3 p-6 text-center">
         <p className="text-[15px] font-medium text-[#1B2A4A]">Admin access required</p>
-        <Link to="/login" className="bg-[#F5B800] text-[#1B2A4A] px-5 py-2.5 rounded-lg text-[13px] font-semibold">Go to Login</Link>
+        <Link to="/login" className="bg-[#16A34A] text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold">Go to Login</Link>
       </div>
     );
   }
@@ -193,7 +193,7 @@ export default function AdminDashboard() {
         <div className={`h-[64px] flex items-center px-4 ${sidebarCollapsed ? "justify-center" : "justify-between"}`}>
           {!sidebarCollapsed && (
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-[#F5B800] flex items-center justify-center">
+              <div className="w-9 h-9 rounded-lg bg-[#16A34A] flex items-center justify-center">
                 <GraduationCap className="w-5 h-5 text-[#1B2A4A]" />
               </div>
               <span className="font-display text-[16px] font-semibold text-white">Udaan24</span>
@@ -206,7 +206,7 @@ export default function AdminDashboard() {
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {visibleModules.map((m) => (
             <button key={m.id} onClick={() => { setActiveModule(m.id); setMobileSidebarOpen(false); }}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-200 ${activeModule === m.id ? "bg-[#F5B800] text-[#1B2A4A]" : "text-white/60 hover:text-white hover:bg-white/5"}`}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-200 ${activeModule === m.id ? "bg-[#16A34A] text-white" : "text-white/60 hover:text-white hover:bg-white/5"}`}
               title={sidebarCollapsed ? m.label : undefined}>
               <m.icon className="w-[18px] h-[18px] flex-shrink-0" />
               {!sidebarCollapsed && <span className="truncate flex-1 text-left">{m.label}</span>}
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
             <nav className="flex-1 px-3 space-y-1">
               {visibleModules.map((m) => (
                 <button key={m.id} onClick={() => { setActiveModule(m.id); setMobileSidebarOpen(false); }}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium ${activeModule === m.id ? "bg-[#F5B800] text-[#1B2A4A]" : "text-white/60"}`}>
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium ${activeModule === m.id ? "bg-[#16A34A] text-white" : "text-white/60"}`}>
                   <m.icon className="w-[18px] h-[18px]" /><span className="flex-1 text-left">{m.label}</span>
                   {m.id === "enquiries" && newLeads > 0 && <span className="min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">{newLeads}</span>}
                 </button>
@@ -259,7 +259,7 @@ export default function AdminDashboard() {
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden sm:block text-[13px] text-[#4A5568]">{user.name}</span>
-            <div className="w-8 h-8 rounded-full bg-[#F5B800] flex items-center justify-center text-[#1B2A4A] text-[12px] font-bold">{(user.name || "A").charAt(0).toUpperCase()}</div>
+            <div className="w-8 h-8 rounded-full bg-[#16A34A] flex items-center justify-center text-[#1B2A4A] text-[12px] font-bold">{(user.name || "A").charAt(0).toUpperCase()}</div>
           </div>
         </header>
 
@@ -284,12 +284,12 @@ function DashboardModule() {
   const { data: recentEnquiries } = trpc.dashboard.recentEnquiries.useQuery();
   const { data: feeBreakdown } = trpc.dashboard.feeBreakdown.useQuery();
 
-  if (isLoading) return <div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (isLoading) return <div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
 
   const statItems = [
     { label: "AI Students", value: stats?.totalStudents || 0, icon: Users, color: "text-[#0071E3]", bg: "bg-[#F0F5FF]" },
     { label: "Active Courses", value: stats?.activeCourses || 0, icon: BookOpen, color: "text-[#22C55E]", bg: "bg-[#F0FFF4]" },
-    { label: "AI Centres", value: stats?.totalCenters || 0, icon: Building2, color: "text-[#F5B800]", bg: "bg-[#FFF9E6]" },
+    { label: "AI Centres", value: stats?.totalCenters || 0, icon: Building2, color: "text-[#16A34A]", bg: "bg-[#EAF7EF]" },
     { label: "Enquiries", value: stats?.totalEnquiries || 0, icon: MessageSquare, color: "text-purple-600", bg: "bg-purple-50" },
     { label: "Pending", value: stats?.pendingEnquiries || 0, icon: Bell, color: "text-red-500", bg: "bg-red-50" },
     { label: "Certificates", value: stats?.certificatesIssued || 0, icon: Award, color: "text-orange-500", bg: "bg-orange-50" },
@@ -307,8 +307,8 @@ function DashboardModule() {
           { label: "Add Centre", module: "centers", icon: Building2 },
           { label: "View Enquiries", module: "enquiries", icon: MessageSquare },
         ].map((action) => (
-          <button key={action.label} onClick={() => useStore.getState().setActiveModule(action.module)} className="bg-white border border-[#E8EDF5] rounded-lg px-4 py-2.5 flex items-center gap-2 text-[13px] font-medium text-[#1B2A4A] hover:border-[#F5B800] hover:shadow-sm transition-all">
-            <action.icon className="w-4 h-4 text-[#F5B800]" />{action.label}
+          <button key={action.label} onClick={() => useStore.getState().setActiveModule(action.module)} className="bg-white border border-[#E8EDF5] rounded-lg px-4 py-2.5 flex items-center gap-2 text-[13px] font-medium text-[#1B2A4A] hover:border-[#16A34A] hover:shadow-sm transition-all">
+            <action.icon className="w-4 h-4 text-[#16A34A]" />{action.label}
           </button>
         ))}
       </div>
@@ -349,7 +349,7 @@ function DashboardModule() {
             <div className="ml-8 space-y-3">
               {[
                 { color: "#22C55E", label: `Paid (${feeBreakdown?.paidPct ?? 0}%)`, count: feeBreakdown?.paid ?? 0 },
-                { color: "#F5B800", label: `Partial (${feeBreakdown?.partialPct ?? 0}%)`, count: feeBreakdown?.partial ?? 0 },
+                { color: "#16A34A", label: `Partial (${feeBreakdown?.partialPct ?? 0}%)`, count: feeBreakdown?.partial ?? 0 },
                 { color: "#EF4444", label: `Pending (${feeBreakdown?.pendingPct ?? 0}%)`, count: feeBreakdown?.pending ?? 0 },
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
@@ -367,7 +367,7 @@ function DashboardModule() {
         <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-hidden">
           <div className="p-4 border-b border-[#E8EDF5] flex items-center justify-between">
             <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A]">Recent AI Students</h3>
-            <button onClick={() => useStore.getState().setActiveModule("students")} className="text-[12px] text-[#F5B800] font-medium">View All</button>
+            <button onClick={() => useStore.getState().setActiveModule("students")} className="text-[12px] text-[#16A34A] font-medium">View All</button>
           </div>
           <table className="w-full">
             <tbody className="divide-y divide-[#E8EDF5]">
@@ -375,7 +375,7 @@ function DashboardModule() {
                 <tr key={s.id} className="hover:bg-[#F5F6FA]">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#FFF9E6] flex items-center justify-center text-[#F5B800] text-[12px] font-bold">{s.name.charAt(0)}</div>
+                      <div className="w-8 h-8 rounded-full bg-[#EAF7EF] flex items-center justify-center text-[#16A34A] text-[12px] font-bold">{s.name.charAt(0)}</div>
                       <div>
                         <p className="text-[13px] font-medium text-[#1B2A4A]">{s.name}</p>
                         <p className="text-[11px] text-[#718096]">{s.rollNumber}</p>
@@ -391,7 +391,7 @@ function DashboardModule() {
         <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-hidden">
           <div className="p-4 border-b border-[#E8EDF5] flex items-center justify-between">
             <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A]">Recent Enquiries</h3>
-            <button onClick={() => useStore.getState().setActiveModule("enquiries")} className="text-[12px] text-[#F5B800] font-medium">View All</button>
+            <button onClick={() => useStore.getState().setActiveModule("enquiries")} className="text-[12px] text-[#16A34A] font-medium">View All</button>
           </div>
           <table className="w-full">
             <tbody className="divide-y divide-[#E8EDF5]">
@@ -494,7 +494,7 @@ function StudentsModule() {
             <option value="">All Admissions</option><option value="pending">Pending</option><option value="in_progress">In Progress</option><option value="completed">Completed</option>
           </select>
           <button onClick={() => downloadCSV("students.csv", (data?.list || []).map((s: any) => ({ roll: s.rollNumber, name: s.name, phone: s.phone, email: s.email, course: (coursesData || []).find((c: any) => c.id === s.courseId)?.name, centre: (centersData?.list || []).find((c: any) => c.id === s.centerId)?.name, status: s.status, payment: s.feeStatus, paymentMode: s.paymentMode, admission: s.admissionStatus, razorpay: s.razorpayPaymentId })))} className="flex items-center gap-1.5 text-[13px] text-[#1B2A4A] font-medium px-3 py-2 border border-[#E8EDF5] rounded-lg hover:bg-[#F5F6FA]"><Download className="w-4 h-4" />Export</button>
-          <button onClick={openAddModal} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#E0A800] transition-colors">
+          <button onClick={openAddModal} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#15803D] transition-colors">
             <Plus className="w-4 h-4" />Add Student
           </button>
         </div>
@@ -511,7 +511,7 @@ function StudentsModule() {
             </thead>
             <tbody className="divide-y divide-[#E8EDF5]">
               {isLoading ? (
-                <tr><td colSpan={7} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></td></tr>
+                <tr><td colSpan={7} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></td></tr>
               ) : (data?.list || []).length === 0 ? (
                 <tr><td colSpan={7} className="p-8 text-center text-[#718096]">No students found</td></tr>
               ) : (data?.list || []).map((s: any) => (
@@ -557,7 +557,7 @@ function StudentsModule() {
               <FormInput label="City" name="city" value={formData.city} onChange={handleFormChange} placeholder="Kotkapura" />
               <FormInput label="State" name="state" value={formData.state} onChange={handleFormChange} placeholder="Punjab" />
             </div>
-            {!editingId && <p className="text-[12px] text-[#718096] bg-[#FFF9E6] rounded-lg px-3 py-2">A unique Student ID, username and temporary password are generated automatically on save.</p>}
+            {!editingId && <p className="text-[12px] text-[#718096] bg-[#EAF7EF] rounded-lg px-3 py-2">A unique Student ID, username and temporary password are generated automatically on save.</p>}
             <div className="flex gap-3 pt-2">
               <button type="button" onClick={closeModal} className="btn-secondary flex-1 py-2.5 text-[13px]">Cancel</button>
               <button type="submit" disabled={createMutation.isPending || updateMutation.isPending} className="btn-primary flex-1 py-2.5 text-[13px] flex items-center justify-center gap-2">
@@ -591,7 +591,7 @@ function StudentDetailModal({ id, onClose, onCreds }: { id: number; onClose: () 
       <div className="absolute inset-0 bg-[rgba(27,42,74,0.5)]" />
       <div className="relative bg-white rounded-2xl w-full max-w-[600px] max-h-[88vh] overflow-y-auto z-10" onClick={(e) => e.stopPropagation()}>
         <div className="sticky top-0 bg-white border-b border-[#E8EDF5] px-6 py-4 flex items-center justify-between rounded-t-2xl"><h3 className="font-body text-[16px] font-semibold text-[#1B2A4A]">Student Details</h3><button onClick={onClose}><X className="w-5 h-5 text-[#718096]" /></button></div>
-        {isLoading || !s ? <div className="p-10 flex justify-center"><Loader2 className="w-7 h-7 text-[#F5B800] animate-spin" /></div> : (
+        {isLoading || !s ? <div className="p-10 flex justify-center"><Loader2 className="w-7 h-7 text-[#16A34A] animate-spin" /></div> : (
           <div className="p-6 space-y-4">
             <div className="flex items-center gap-4">
               {s.photo ? <img src={s.photo} alt="" className="w-16 h-16 rounded-full object-cover border border-[#E8EDF5]" /> : <div className="w-16 h-16 rounded-full bg-[#F5F6FA] border border-[#E8EDF5] flex items-center justify-center text-[#718096] text-[11px]">No image</div>}
@@ -675,19 +675,19 @@ function CoursesModule() {
             <Search className="w-4 h-4 text-[#718096] mr-2" />
             <input type="text" placeholder="Search courses..." value={search} onChange={(e) => setSearch(e.target.value)} className="bg-transparent text-[13px] outline-none w-40" />
           </div>
-          <button onClick={() => { setEditingId(null); setFormData({}); openModal("Add Course"); }} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#E0A800] transition-colors">
+          <button onClick={() => { setEditingId(null); setFormData({}); openModal("Add Course"); }} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#15803D] transition-colors">
             <Plus className="w-4 h-4" />Add Course
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {isLoading ? <div className="col-span-full text-center py-8"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></div> :
+        {isLoading ? <div className="col-span-full text-center py-8"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></div> :
           (coursesData || []).length === 0 ? <div className="col-span-full text-center py-8 text-[#718096]">No courses found</div> :
             (coursesData || []).map((c: any) => (
               <div key={c.id} className="bg-white rounded-xl border border-[#E8EDF5] p-5 hover:shadow-sm transition-all">
                 <div className="flex items-start justify-between mb-3">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-[#FFF9E6] text-[#1B2A4A]">{categoryOptions.find(o => o.value === c.category)?.label || c.category}</span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-[#EAF7EF] text-[#1B2A4A]">{categoryOptions.find(o => o.value === c.category)?.label || c.category}</span>
                   <div className="flex items-center gap-1">
                     <button onClick={() => { setEditingId(c.id); setFormData({ ...c }); openModal("Edit Course"); }} className="w-7 h-7 rounded-lg hover:bg-[#E8EDF5] flex items-center justify-center"><Edit className="w-3.5 h-3.5 text-[#718096]" /></button>
                     <button onClick={() => { if (confirm("Delete?")) deleteMutation.mutate({ id: c.id }); }} className="w-7 h-7 rounded-lg hover:bg-red-50 flex items-center justify-center"><Trash2 className="w-3.5 h-3.5 text-red-400" /></button>
@@ -779,7 +779,7 @@ function CentreDetailModal({ center, onClose }: { center: any; onClose: () => vo
           <table className="w-full">
             <thead className="bg-[#F5F6FA]"><tr className="text-left text-[11px] text-[#718096] uppercase"><th className="p-3 font-medium">Roll</th><th className="p-3 font-medium">Name</th><th className="p-3 font-medium">Status</th><th className="p-3 font-medium">Fee</th></tr></thead>
             <tbody className="divide-y divide-[#E8EDF5]">
-              {isLoading ? <tr><td colSpan={4} className="p-6 text-center"><Loader2 className="w-5 h-5 text-[#F5B800] animate-spin mx-auto" /></td></tr> :
+              {isLoading ? <tr><td colSpan={4} className="p-6 text-center"><Loader2 className="w-5 h-5 text-[#16A34A] animate-spin mx-auto" /></td></tr> :
                 (students || []).length === 0 ? <tr><td colSpan={4} className="p-6 text-center text-[#718096] text-[13px]">No students mapped</td></tr> :
                   (students || []).map((s: any) => (
                     <tr key={s.id}><td className="p-3 text-[12px] font-mono text-[#718096]">{s.rollNumber}</td><td className="p-3 text-[13px] text-[#1B2A4A]">{s.name}</td><td className="p-3"><StatusBadge status={s.status} /></td><td className="p-3"><StatusBadge status={s.feeStatus} /></td></tr>
@@ -829,7 +829,7 @@ function CentersModule() {
             <Search className="w-4 h-4 text-[#718096] mr-2" />
             <input type="text" placeholder="Search centres..." value={search} onChange={(e) => setSearch(e.target.value)} className="bg-transparent text-[13px] outline-none w-40" />
           </div>
-          <button onClick={() => { setEditingId(null); setFormData({}); openModal("Add Centre"); }} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#E0A800]">
+          <button onClick={() => { setEditingId(null); setFormData({}); openModal("Add Centre"); }} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#15803D]">
             <Plus className="w-4 h-4" />Add Centre
           </button>
         </div>
@@ -842,12 +842,12 @@ function CentersModule() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {isLoading ? <div className="col-span-full text-center py-8"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></div> :
+        {isLoading ? <div className="col-span-full text-center py-8"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></div> :
           (data?.list || []).length === 0 ? <div className="col-span-full text-center py-8 text-[#718096]">No centres found</div> :
             (data?.list || []).map((c: any) => (
               <div key={c.id} className="bg-white rounded-xl border border-[#E8EDF5] p-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#FFF9E6] flex items-center justify-center flex-shrink-0"><Building2 className="w-6 h-6 text-[#F5B800]" /></div>
+                  <div className="w-12 h-12 rounded-xl bg-[#EAF7EF] flex items-center justify-center flex-shrink-0"><Building2 className="w-6 h-6 text-[#16A34A]" /></div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
@@ -1064,9 +1064,9 @@ function ConvertLeadModal({ lead, courses, centres, onClose, onConverted }: { le
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-[rgba(27,42,74,0.5)]" />
       <div className="relative bg-white rounded-2xl w-full max-w-[640px] max-h-[90vh] overflow-y-auto z-10" onClick={(e) => e.stopPropagation()}>
-        <div className="sticky top-0 bg-white border-b border-[#E8EDF5] px-6 py-4 flex items-center justify-between rounded-t-2xl z-10"><h3 className="font-body text-[16px] font-semibold text-[#1B2A4A] flex items-center gap-2"><UserPlus className="w-4 h-4 text-[#F5B800]" />Convert Lead to Student</h3><button onClick={onClose}><X className="w-5 h-5 text-[#718096]" /></button></div>
+        <div className="sticky top-0 bg-white border-b border-[#E8EDF5] px-6 py-4 flex items-center justify-between rounded-t-2xl z-10"><h3 className="font-body text-[16px] font-semibold text-[#1B2A4A] flex items-center gap-2"><UserPlus className="w-4 h-4 text-[#16A34A]" />Convert Lead to Student</h3><button onClick={onClose}><X className="w-5 h-5 text-[#718096]" /></button></div>
         <form onSubmit={submit} className="p-6 space-y-4">
-          <p className="text-[12px] text-[#718096] bg-[#FFF9E6] rounded-lg px-3 py-2">Data pre-filled from the lead. Complete the required student details below, then confirm.</p>
+          <p className="text-[12px] text-[#718096] bg-[#EAF7EF] rounded-lg px-3 py-2">Data pre-filled from the lead. Complete the required student details below, then confirm.</p>
           <ImageUpload value={form.photo} onChange={(v) => setForm({ ...form, photo: v })} label="Student Image (optional)" />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormInput label="Student Name" name="name" value={form.name} onChange={handle} required placeholder="Full name" />
@@ -1100,7 +1100,7 @@ function ConvertLeadModal({ lead, courses, centres, onClose, onConverted }: { le
           <div className="border-t border-[#E8EDF5] pt-3">
             <div className="flex items-center justify-between mb-2">
               <label className="font-body text-[13px] font-medium text-[#1B2A4A]">Sibling Details (optional)</label>
-              <button type="button" onClick={() => setSiblings([...siblings, { name: "", relation: "", age: "", qualification: "" }])} className="text-[12px] text-[#F5B800] font-medium flex items-center gap-1"><Plus className="w-3.5 h-3.5" />Add Sibling</button>
+              <button type="button" onClick={() => setSiblings([...siblings, { name: "", relation: "", age: "", qualification: "" }])} className="text-[12px] text-[#16A34A] font-medium flex items-center gap-1"><Plus className="w-3.5 h-3.5" />Add Sibling</button>
             </div>
             {siblings.map((s, i) => (
               <div key={i} className="grid grid-cols-1 sm:grid-cols-4 gap-2 mb-2">
@@ -1189,7 +1189,7 @@ function EnquiriesModule() {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E8EDF5]">
-              {isLoading ? <tr><td colSpan={10} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></td></tr> :
+              {isLoading ? <tr><td colSpan={10} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></td></tr> :
                 (data?.list || []).length === 0 ? <tr><td colSpan={10} className="p-8 text-center text-[#718096]">No leads found</td></tr> :
                   (data?.list || []).map((e: any) => {
                     const converted = !!e.convertedStudentId;
@@ -1211,7 +1211,7 @@ function EnquiriesModule() {
                           {converted ? (
                             <button onClick={() => goToStudent(e.convertedStudentRoll)} className="w-7 h-7 rounded-lg hover:bg-green-50 flex items-center justify-center" title="View Student Profile"><ExternalLink className="w-3.5 h-3.5 text-green-600" /></button>
                           ) : (
-                            <button onClick={() => setConvertLead(e)} className="w-7 h-7 rounded-lg hover:bg-[#FFF9E6] flex items-center justify-center" title="Convert to Student"><UserPlus className="w-3.5 h-3.5 text-[#B8860B]" /></button>
+                            <button onClick={() => setConvertLead(e)} className="w-7 h-7 rounded-lg hover:bg-[#EAF7EF] flex items-center justify-center" title="Convert to Student"><UserPlus className="w-3.5 h-3.5 text-[#B8860B]" /></button>
                           )}
                           <button onClick={() => { if (confirm("Are you sure you want to delete this lead?")) deleteMutation.mutate({ id: e.id }); }} className="w-7 h-7 rounded-lg hover:bg-red-50 flex items-center justify-center" title="Delete"><Trash2 className="w-3.5 h-3.5 text-red-400" /></button>
                         </div>
@@ -1249,7 +1249,7 @@ function FeesModule() {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E8EDF5]">
-              {isLoading ? <tr><td colSpan={3} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></td></tr> :
+              {isLoading ? <tr><td colSpan={3} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></td></tr> :
                 (dueFees || []).length === 0 ? <tr><td colSpan={3} className="p-8 text-center text-[#718096]">No pending fees</td></tr> :
                   (dueFees || []).map((s: any) => (
                     <tr key={s.id} className="hover:bg-[#F5F6FA]">
@@ -1276,7 +1276,7 @@ function ExamsModule() {
     <div className="space-y-4">
       <h2 className="font-display text-[24px] font-semibold text-[#1B2A4A]">AI Exam Builder</h2>
       <div className="space-y-3">
-        {isLoading ? <div className="text-center py-8"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></div> :
+        {isLoading ? <div className="text-center py-8"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></div> :
           (examsData || []).length === 0 ? <div className="text-center py-8 text-[#718096]">No exams found</div> :
             (examsData || []).map((exam: any) => (
               <div key={exam.id} className="bg-white rounded-xl border border-[#E8EDF5] p-5 flex items-center justify-between">
@@ -1343,14 +1343,14 @@ function CertificatesModule() {
     <div className="space-y-4">
       <h2 className="font-display text-[24px] font-semibold text-[#1B2A4A]">Certificates & Marksheets</h2>
       <div className="flex flex-wrap gap-2 border-b border-[#E8EDF5]">
-        {["certificates", "marksheets"].map((t) => <button key={t} onClick={() => setTab(t)} className={`px-4 py-2 text-[13px] font-medium border-b-2 capitalize ${tab === t ? "border-[#F5B800] text-[#1B2A4A]" : "border-transparent text-[#718096]"}`}>{t}</button>)}
+        {["certificates", "marksheets"].map((t) => <button key={t} onClick={() => setTab(t)} className={`px-4 py-2 text-[13px] font-medium border-b-2 capitalize ${tab === t ? "border-[#16A34A] text-[#1B2A4A]" : "border-transparent text-[#718096]"}`}>{t}</button>)}
       </div>
 
       {tab === "certificates" && (
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2">
             <select value={genCert} onChange={(e) => setGenCert(e.target.value)} className="h-9 px-3 bg-white border border-[#E8EDF5] rounded-lg text-[13px] outline-none min-w-[220px]"><option value="">Select student to issue…</option>{students.map((s: any) => <option key={s.id} value={s.id}>{s.name} ({s.rollNumber})</option>)}</select>
-            <button onClick={() => genCert && issue.mutate({ studentId: Number(genCert) })} disabled={!genCert || issue.isPending} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 disabled:opacity-50">{issue.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Award className="w-4 h-4" />}Generate Certificate</button>
+            <button onClick={() => genCert && issue.mutate({ studentId: Number(genCert) })} disabled={!genCert || issue.isPending} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 disabled:opacity-50">{issue.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Award className="w-4 h-4" />}Generate Certificate</button>
             <span className="text-[11px] text-[#718096]">Type auto-selected from course duration.</span>
           </div>
           <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-x-auto">
@@ -1359,7 +1359,7 @@ function CertificatesModule() {
                 {(certsData?.list || []).length === 0 ? <tr><td colSpan={6} className="p-8 text-center text-[#718096]">No certificates issued yet</td></tr> :
                   (certsData?.list || []).map((c: any) => (
                     <tr key={c.id} className="hover:bg-[#F5F6FA]">
-                      <td className="p-4 text-[12px] font-mono text-[#F5B800] font-medium">{c.serialNumber}</td>
+                      <td className="p-4 text-[12px] font-mono text-[#16A34A] font-medium">{c.serialNumber}</td>
                       <td className="p-4 text-[13px] font-medium text-[#1B2A4A]">{c.studentName}</td>
                       <td className="p-4 text-[13px] text-[#4A5568]">{c.courseName}</td>
                       <td className="p-4 text-[12px] capitalize">{(c.certificateType || '').replace('_', ' ')}</td>
@@ -1379,14 +1379,14 @@ function CertificatesModule() {
 
       {tab === "marksheets" && (
         <div className="space-y-3">
-          <button onClick={() => setShowMs(true)} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5"><Plus className="w-4 h-4" />Generate Marksheet</button>
+          <button onClick={() => setShowMs(true)} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5"><Plus className="w-4 h-4" />Generate Marksheet</button>
           <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-x-auto">
             <table className="w-full"><thead className="bg-[#F5F6FA]"><tr className="text-left text-[11px] text-[#718096] uppercase tracking-wider"><th className="p-4 font-medium">Number</th><th className="p-4 font-medium">Student</th><th className="p-4 font-medium">%</th><th className="p-4 font-medium">Grade</th><th className="p-4 font-medium">Result</th><th className="p-4 font-medium">Actions</th></tr></thead>
               <tbody className="divide-y divide-[#E8EDF5]">
                 {(msData || []).length === 0 ? <tr><td colSpan={6} className="p-8 text-center text-[#718096]">No marksheets generated yet</td></tr> :
                   (msData || []).map((m: any) => (
                     <tr key={m.id} className="hover:bg-[#F5F6FA]">
-                      <td className="p-4 text-[12px] font-mono text-[#F5B800] font-medium">{m.marksheetNumber}</td>
+                      <td className="p-4 text-[12px] font-mono text-[#16A34A] font-medium">{m.marksheetNumber}</td>
                       <td className="p-4 text-[13px] font-medium text-[#1B2A4A]">{m.studentName}<div className="text-[11px] font-mono text-[#718096]">{m.rollNumber}</div></td>
                       <td className="p-4 text-[13px]">{Number(m.percentage)}%</td>
                       <td className="p-4 text-[13px] font-medium">{m.grade}</td>
@@ -1426,7 +1426,7 @@ function SettingsModule() {
   return (
     <div className="space-y-6">
       <h2 className="font-display text-[24px] font-semibold text-[#1B2A4A]">Settings</h2>
-      {isLoading ? <div className="text-center py-8"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></div> :
+      {isLoading ? <div className="text-center py-8"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></div> :
         Object.entries(grouped).map(([group, items]: [string, any]) => (
           <div key={group} className="bg-white rounded-xl border border-[#E8EDF5] p-6">
             <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] uppercase tracking-wider mb-4">{group}</h3>
@@ -1435,7 +1435,7 @@ function SettingsModule() {
                 <div key={s.id} className="flex items-center gap-4">
                   <span className="text-[13px] text-[#718096] w-40 flex-shrink-0 capitalize">{s.key.replace(/_/g, " ")}</span>
                   <input type="text" defaultValue={s.value || ""} onBlur={(e) => setMutation.mutate({ key: s.key, value: e.target.value, group: s.group })}
-                    className="flex-1 h-9 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] text-[#1B2A4A] outline-none focus:border-[#F5B800]" />
+                    className="flex-1 h-9 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] text-[#1B2A4A] outline-none focus:border-[#16A34A]" />
                 </div>
               ))}
             </div>
@@ -1498,14 +1498,14 @@ function BackupsModule() {
           <h2 className="font-display text-[24px] font-semibold text-[#1B2A4A]">Database Backups</h2>
           <p className="text-[13px] text-[#718096]">Daily automatic backups + on-demand backup & restore.</p>
         </div>
-        <button onClick={() => runMut.mutate()} disabled={runMut.isPending} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#E0A800] transition-colors disabled:opacity-60">
+        <button onClick={() => runMut.mutate()} disabled={runMut.isPending} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#15803D] transition-colors disabled:opacity-60">
           {runMut.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Database className="w-4 h-4" />}Backup Now
         </button>
       </div>
 
       {/* Drive status */}
-      <div className={`rounded-xl border p-4 flex items-start gap-3 ${driveOk ? "bg-[#F0FFF4] border-green-200" : "bg-[#FFF9E6] border-[#F5B800]/40"}`}>
-        <Cloud className={`w-5 h-5 flex-shrink-0 mt-0.5 ${driveOk ? "text-green-600" : "text-[#F5B800]"}`} />
+      <div className={`rounded-xl border p-4 flex items-start gap-3 ${driveOk ? "bg-[#F0FFF4] border-green-200" : "bg-[#EAF7EF] border-[#16A34A]/40"}`}>
+        <Cloud className={`w-5 h-5 flex-shrink-0 mt-0.5 ${driveOk ? "text-green-600" : "text-[#16A34A]"}`} />
         <div className="text-[13px]">
           {driveOk ? (
             <><span className="font-semibold text-[#1B2A4A]">Google Drive connected.</span> <span className="text-[#4A5568]">Daily backups (02:00 UTC) upload automatically and stay safe off-server.</span></>
@@ -1525,7 +1525,7 @@ function BackupsModule() {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E8EDF5]">
-              {isLoading ? <tr><td colSpan={5} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#F5B800] animate-spin mx-auto" /></td></tr> :
+              {isLoading ? <tr><td colSpan={5} className="p-8 text-center"><Loader2 className="w-6 h-6 text-[#16A34A] animate-spin mx-auto" /></td></tr> :
                 items.length === 0 ? <tr><td colSpan={5} className="p-8 text-center text-[#718096]">No backups yet — click “Backup Now”.</td></tr> :
                   items.map((b: any) => (
                     <tr key={b.id} className="hover:bg-[#F5F6FA]">
@@ -1541,7 +1541,7 @@ function BackupsModule() {
                         <div className="flex items-center gap-1">
                           {b.source === "drive" && b.link && <a href={b.link} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-lg hover:bg-[#E8EDF5] flex items-center justify-center" title="Open in Drive"><ExternalLink className="w-3.5 h-3.5 text-[#718096]" /></a>}
                           <button onClick={() => downloadMut.mutate({ id: b.id, name: b.name } as any)} className="w-7 h-7 rounded-lg hover:bg-[#E8EDF5] flex items-center justify-center" title="Download"><Download className="w-3.5 h-3.5 text-[#718096]" /></button>
-                          <button onClick={() => { setRestoreTarget(b); setConfirmText(""); }} className="w-7 h-7 rounded-lg hover:bg-[#FFF9E6] flex items-center justify-center" title="Restore"><RotateCcw className="w-3.5 h-3.5 text-[#B8860B]" /></button>
+                          <button onClick={() => { setRestoreTarget(b); setConfirmText(""); }} className="w-7 h-7 rounded-lg hover:bg-[#EAF7EF] flex items-center justify-center" title="Restore"><RotateCcw className="w-3.5 h-3.5 text-[#B8860B]" /></button>
                           <button onClick={() => { if (confirm(`Delete backup ${b.name}?`)) deleteMut.mutate({ id: b.id }); }} className="w-7 h-7 rounded-lg hover:bg-red-50 flex items-center justify-center" title="Delete"><Trash2 className="w-3.5 h-3.5 text-red-400" /></button>
                         </div>
                       </td>
@@ -1625,7 +1625,7 @@ function ReferralsModule() {
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
         <StatCard label="Referrals" value={ov?.totalReferrals ?? 0} icon={Users} color="text-[#0071E3]" bg="bg-[#F0F5FF]" />
         <StatCard label="Total Commission" value={`₹${ov?.totalCommission ?? 0}`} icon={Award} color="text-purple-600" bg="bg-purple-50" />
-        <StatCard label="Pending" value={`₹${ov?.pendingCommission ?? 0}`} icon={Bell} color="text-[#F5B800]" bg="bg-[#FFF9E6]" />
+        <StatCard label="Pending" value={`₹${ov?.pendingCommission ?? 0}`} icon={Bell} color="text-[#16A34A]" bg="bg-[#EAF7EF]" />
         <StatCard label="Approved" value={`₹${ov?.approvedCommission ?? 0}`} icon={CheckCircle} color="text-[#22C55E]" bg="bg-[#F0FFF4]" />
         <StatCard label="Wallet Total" value={`₹${ov?.totalWalletBalance ?? 0}`} icon={Wallet} color="text-[#1B2A4A]" bg="bg-[#F5F6FA]" />
         <StatCard label="Pending Payouts" value={ov?.pendingPayouts ?? 0} icon={Send} color="text-orange-500" bg="bg-orange-50" />
@@ -1633,7 +1633,7 @@ function ReferralsModule() {
 
       <div className="flex flex-wrap gap-2 border-b border-[#E8EDF5]">
         {subTabs.map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={`px-4 py-2 text-[13px] font-medium border-b-2 capitalize ${tab === t ? "border-[#F5B800] text-[#1B2A4A]" : "border-transparent text-[#718096]"}`}>{t}</button>
+          <button key={t} onClick={() => setTab(t)} className={`px-4 py-2 text-[13px] font-medium border-b-2 capitalize ${tab === t ? "border-[#16A34A] text-[#1B2A4A]" : "border-transparent text-[#718096]"}`}>{t}</button>
         ))}
       </div>
 
@@ -1682,7 +1682,7 @@ function ReferralsModule() {
                     <td className="p-3 text-[13px] font-semibold">₹{Number(w.walletBalance).toLocaleString("en-IN")}</td>
                     <td className="p-3 text-[13px]">₹{Number(w.totalEarned).toLocaleString("en-IN")}</td>
                     <td className="p-3 text-[13px]">₹{Number(w.totalWithdrawn).toLocaleString("en-IN")}</td>
-                    <td className="p-3 text-[13px] text-[#F5B800]">₹{Number(w.pendingAmount).toLocaleString("en-IN")}</td>
+                    <td className="p-3 text-[13px] text-[#16A34A]">₹{Number(w.pendingAmount).toLocaleString("en-IN")}</td>
                     <td className="p-3 text-[13px]">₹{Number(w.outstandingAmount).toLocaleString("en-IN")}</td>
                   </tr>
                 ))}

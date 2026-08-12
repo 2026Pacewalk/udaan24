@@ -62,7 +62,7 @@ export default function Register() {
       <main className="pt-[100px] pb-16">
         <div className="container-main max-w-[520px]">
           <div className="text-center mb-8">
-            <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center mx-auto mb-3"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
+            <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-3"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
             <h1 className="font-display text-[30px] font-semibold text-[#1B2A4A]">Apply to Udaan24</h1>
             <p className="text-[14px] text-[#718096] mt-1">Submit your application — our team will review and activate your account.</p>
           </div>
@@ -74,11 +74,11 @@ export default function Register() {
           )}
 
           <form onSubmit={(e) => { e.preventDefault(); setError(''); register.mutate({ name: form.name, phone: form.phone, email: form.email, password: form.password, courseId: form.courseId ? Number(form.courseId) : undefined, referralCode: refCode || undefined }); }} className="bg-white border border-[#E8EDF5] rounded-2xl p-6 space-y-3">
-            <input required placeholder="Full name *" value={form.name || ''} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#F5B800]" />
-            <input placeholder="Mobile number" value={form.phone || ''} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#F5B800]" />
-            <input type="email" placeholder="Email" value={form.email || ''} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#F5B800]" />
-            <input type="password" placeholder="Password (min 4 chars)" value={form.password || ''} onChange={(e) => setForm({ ...form, password: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#F5B800]" />
-            <select value={form.courseId || ''} onChange={(e) => setForm({ ...form, courseId: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#F5B800]">
+            <input required placeholder="Full name *" value={form.name || ''} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#16A34A]" />
+            <input placeholder="Mobile number" value={form.phone || ''} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#16A34A]" />
+            <input type="email" placeholder="Email" value={form.email || ''} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#16A34A]" />
+            <input type="password" placeholder="Password (min 4 chars)" value={form.password || ''} onChange={(e) => setForm({ ...form, password: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#16A34A]" />
+            <select value={form.courseId || ''} onChange={(e) => setForm({ ...form, courseId: e.target.value })} className="w-full h-11 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[14px] outline-none focus:border-[#16A34A]">
               <option value="">Interested course (optional)</option>
               {(courses || []).map((c: any) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>

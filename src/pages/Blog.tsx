@@ -114,7 +114,7 @@ export default function Blog() {
 
             <div className="container-main py-12">
               <div className="max-w-[800px] mx-auto">
-                <Link to="/blog" className="flex items-center gap-2 text-[14px] text-[#718096] hover:text-[#F5B800] transition-colors mb-6">
+                <Link to="/blog" className="flex items-center gap-2 text-[14px] text-[#718096] hover:text-[#16A34A] transition-colors mb-6">
                   <ArrowLeft className="w-4 h-4" />
                   Back to Blog
                 </Link>
@@ -159,7 +159,7 @@ export default function Blog() {
                     {filtered.slice(0, 2).map((rp) => (
                       <Link key={rp.slug} to={`/blog/${rp.slug}`} className="group">
                         <img src={rp.image} alt={rp.title} className="w-full h-[160px] object-cover rounded-xl mb-3" />
-                        <h4 className="font-body text-[15px] font-semibold text-[#1B2A4A] group-hover:text-[#F5B800] transition-colors">
+                        <h4 className="font-body text-[15px] font-semibold text-[#1B2A4A] group-hover:text-[#16A34A] transition-colors">
                           {rp.title}
                         </h4>
                       </Link>
@@ -197,7 +197,7 @@ export default function Blog() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-12 pl-11 pr-4 bg-white/10 border border-white/20 rounded-full text-white placeholder-white/50 text-[14px] focus:outline-none focus:border-[#F5B800]"
+                className="w-full h-12 pl-11 pr-4 bg-white/10 border border-white/20 rounded-full text-white placeholder-white/50 text-[14px] focus:outline-none focus:border-[#16A34A]"
                 placeholder="Search AI articles..."
               />
             </div>
@@ -214,7 +214,7 @@ export default function Blog() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
                     activeCategory === cat
-                      ? 'bg-[#F5B800] text-[#1B2A4A]'
+                      ? 'bg-[#16A34A] text-white'
                       : 'bg-transparent border border-[#E8EDF5] text-[#4A5568] hover:border-[#1B2A4A]'
                   }`}
                 >
@@ -240,7 +240,7 @@ export default function Blog() {
                         <span className="status-badge-yellow text-[11px]">{bp.category}</span>
                         <span className="text-[12px] text-[#718096]">{bp.date}</span>
                       </div>
-                      <h3 className="font-body text-[17px] font-semibold text-[#1B2A4A] mb-2 leading-tight group-hover:text-[#F5B800] transition-colors">
+                      <h3 className="font-body text-[17px] font-semibold text-[#1B2A4A] mb-2 leading-tight group-hover:text-[#16A34A] transition-colors">
                         {bp.title}
                       </h3>
                       <p className="text-[13px] text-[#4A5568] leading-relaxed line-clamp-2">

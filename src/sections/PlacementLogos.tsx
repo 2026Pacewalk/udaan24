@@ -19,7 +19,7 @@ export default function PlacementLogos() {
           {recruiters.map((company) => (
             <div
               key={company}
-              className="flex items-center gap-2 px-6 py-3 bg-[#FEFDFB] border border-[#E8EDF5] rounded-lg hover:border-[#F5B800] hover:shadow-sm transition-all duration-200"
+              className="flex items-center gap-2 px-6 py-3 bg-[#FEFDFB] border border-[#E8EDF5] rounded-lg hover:border-[#16A34A] hover:shadow-sm transition-all duration-200"
             >
               <Building2 className="w-5 h-5 text-[#718096]" />
               <span className="font-body text-[14px] font-medium text-[#4A5568]">{company}</span>

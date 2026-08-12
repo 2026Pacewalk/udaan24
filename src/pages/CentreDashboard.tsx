@@ -21,21 +21,21 @@ function CentreLogin({ onLogin }: { onLogin: (id: number) => void }) {
     <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA] p-4">
       <div className="w-full max-w-sm bg-white rounded-2xl border border-[#E8EDF5] p-8">
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center mx-auto mb-3"><Building2 className="w-7 h-7 text-[#1B2A4A]" /></div>
+          <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-3"><Building2 className="w-7 h-7 text-[#1B2A4A]" /></div>
           <h1 className="font-display text-[20px] font-semibold text-[#1B2A4A]">Study Centre Login</h1>
           <p className="text-[13px] text-[#718096]">Login with your centre code</p>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); setError(''); login.mutate({ code, password }); }} className="space-y-3">
           <div>
             <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Centre Code</label>
-            <input value={code} onChange={(e) => setCode(e.target.value)} required className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" placeholder="UAN24-KKP" />
+            <input value={code} onChange={(e) => setCode(e.target.value)} required className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" placeholder="UAN24-KKP" />
           </div>
           <div>
             <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" placeholder="••••••••" />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" placeholder="••••••••" />
           </div>
           {error && <p className="text-[12px] text-red-500">{error}</p>}
-          <button type="submit" disabled={login.isPending} className="w-full h-10 bg-[#F5B800] text-[#1B2A4A] rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 hover:bg-[#E0A800] disabled:opacity-60">
+          <button type="submit" disabled={login.isPending} className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 hover:bg-[#15803D] disabled:opacity-60">
             {login.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign in'}
           </button>
         </form>
@@ -83,17 +83,17 @@ function ShareLinkModal({ centerId, onClose, onDone }: { centerId: number; onClo
         {!link ? (
           <form onSubmit={(e) => { e.preventDefault(); setError(''); if (!name.trim()) return setError('Student name is required.'); gen.mutate({ centerId, name: name.trim(), phone: phone || undefined }); }} className="space-y-3">
             <p className="text-[12px] text-[#718096]">Create a link the student opens to fill their own 3-step admission form. Your centre auto-fills as their centre.</p>
-            <input required placeholder="Student name *" value={name} onChange={(e) => setName(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
-            <input placeholder="Phone (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
+            <input required placeholder="Student name *" value={name} onChange={(e) => setName(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
+            <input placeholder="Phone (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
             {error && <p className="text-[12px] text-red-500">{error}</p>}
-            <button type="submit" disabled={gen.isPending} className="w-full h-10 bg-[#F5B800] text-[#1B2A4A] rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">{gen.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}Generate Link</button>
+            <button type="submit" disabled={gen.isPending} className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">{gen.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}Generate Link</button>
           </form>
         ) : (
           <div className="space-y-3">
             <p className="text-[13px] text-green-700 flex items-center gap-1.5"><CheckCircle className="w-4 h-4" />Link generated — share it with the student.</p>
             <div className="flex gap-2">
               <input readOnly value={link} className="flex-1 h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[12px] font-mono outline-none" />
-              <button onClick={() => { navigator.clipboard?.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1500); }} className="bg-[#F5B800] text-[#1B2A4A] px-4 rounded-lg text-[13px] font-semibold">{copied ? 'Copied!' : 'Copy'}</button>
+              <button onClick={() => { navigator.clipboard?.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1500); }} className="bg-[#16A34A] text-white px-4 rounded-lg text-[13px] font-semibold">{copied ? 'Copied!' : 'Copy'}</button>
             </div>
             <a href={`https://wa.me/?text=${encodeURIComponent('Complete your Udaan24 admission form: ' + link)}`} target="_blank" rel="noreferrer" className="block text-center bg-[#25D366] text-white py-2.5 rounded-lg text-[13px] font-semibold">Share on WhatsApp</a>
             <button onClick={onClose} className="w-full h-10 border border-[#E8EDF5] rounded-lg text-[13px] font-medium">Done</button>
@@ -115,7 +115,7 @@ function StudentModal({ centerId, student, onClose, onDone }: { centerId: number
   const create = trpc.students.createByCenter.useMutation({ onSuccess: done, onError: onErr });
   const update = trpc.students.updateByCenter.useMutation({ onSuccess: done, onError: onErr });
   const pending = create.isPending || update.isPending;
-  const cls = "w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]";
+  const cls = "w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]";
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault(); setError('');
@@ -162,7 +162,7 @@ function StudentModal({ centerId, student, onClose, onDone }: { centerId: number
           {error && <p className="text-[12px] text-red-500">{error}</p>}
           <div className="flex gap-3 pt-1">
             <button type="button" onClick={onClose} className="flex-1 h-10 border border-[#E8EDF5] rounded-lg text-[13px] font-medium">Cancel</button>
-            <button type="submit" disabled={pending} className="flex-1 h-10 bg-[#F5B800] text-[#1B2A4A] rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">
+            <button type="submit" disabled={pending} className="flex-1 h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">
               {pending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}{editing ? 'Update' : 'Submit'}
             </button>
           </div>
@@ -197,12 +197,12 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
   const { data: centreMarksheets } = trpc.marksheets.byCenter.useQuery({ centerId });
   const { data: downloads } = trpc.downloads.list.useQuery();
 
-  if (cLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (cLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
   if (!center) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F6FA] gap-3">
         <p className="text-[14px] text-[#718096]">Could not load centre data.</p>
-        <button onClick={onLogout} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold">Back to login</button>
+        <button onClick={onLogout} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold">Back to login</button>
       </div>
     );
   }
@@ -221,12 +221,12 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
       {/* Sidebar */}
       <aside className="hidden lg:flex w-[230px] bg-[#1B2A4A] flex-col fixed h-full">
         <div className="h-[64px] flex items-center gap-2.5 px-5">
-          <div className="w-9 h-9 rounded-lg bg-[#F5B800] flex items-center justify-center"><Building2 className="w-5 h-5 text-[#1B2A4A]" /></div>
+          <div className="w-9 h-9 rounded-lg bg-[#16A34A] flex items-center justify-center"><Building2 className="w-5 h-5 text-[#1B2A4A]" /></div>
           <span className="font-display text-[15px] font-semibold text-white">Udaan24 Centre</span>
         </div>
         <nav className="flex-1 px-3 py-4 space-y-1">
           {NAV.map((n) => (
-            <button key={n.id} onClick={() => setTab(n.id)} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all ${tab === n.id ? 'bg-[#F5B800] text-[#1B2A4A]' : 'text-white/60 hover:text-white hover:bg-white/5'}`}>
+            <button key={n.id} onClick={() => setTab(n.id)} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all ${tab === n.id ? 'bg-[#16A34A] text-white' : 'text-white/60 hover:text-white hover:bg-white/5'}`}>
               <n.icon className="w-[18px] h-[18px]" />{n.label}
             </button>
           ))}
@@ -244,7 +244,7 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
             <div className="h-[64px] flex items-center px-5 text-white font-display font-semibold">Udaan24 Centre</div>
             <nav className="flex-1 px-3 space-y-1">
               {NAV.map((n) => (
-                <button key={n.id} onClick={() => { setTab(n.id); setMobileNav(false); }} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium ${tab === n.id ? 'bg-[#F5B800] text-[#1B2A4A]' : 'text-white/60'}`}><n.icon className="w-[18px] h-[18px]" />{n.label}</button>
+                <button key={n.id} onClick={() => { setTab(n.id); setMobileNav(false); }} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium ${tab === n.id ? 'bg-[#16A34A] text-white' : 'text-white/60'}`}><n.icon className="w-[18px] h-[18px]" />{n.label}</button>
               ))}
             </nav>
             <div className="p-3 border-t border-white/10"><button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] text-white/50"><LogOut className="w-[18px] h-[18px]" />Logout</button></div>
@@ -279,7 +279,7 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <Tile icon={Users} label="Total Students" value={stats.total} color="text-[#0071E3]" bg="bg-[#F0F5FF]" />
                 <Tile icon={GraduationCap} label="Active" value={stats.active} color="text-[#22C55E]" bg="bg-[#F0FFF4]" />
-                <Tile icon={Award} label="Certified" value={stats.certified} color="text-[#F5B800]" bg="bg-[#FFF9E6]" />
+                <Tile icon={Award} label="Certified" value={stats.certified} color="text-[#16A34A]" bg="bg-[#EAF7EF]" />
                 <Tile icon={CreditCard} label="Fees Pending" value={stats.pendingFees} color="text-[#EF4444]" bg="bg-red-50" />
               </div>
             </>
@@ -292,7 +292,7 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
                 <h2 className="font-display text-[22px] font-semibold text-[#1B2A4A]">Affiliated Students</h2>
                 <div className="flex items-center gap-2">
                   <button onClick={() => setShowLink(true)} className="border border-[#E8EDF5] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#F5F6FA]"><Send className="w-4 h-4" />Share Admission Link</button>
-                  <button onClick={() => setModal('add')} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#E0A800]"><Plus className="w-4 h-4" />Add Student</button>
+                  <button onClick={() => setModal('add')} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 hover:bg-[#15803D]"><Plus className="w-4 h-4" />Add Student</button>
                 </div>
               </div>
               <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-x-auto">
@@ -327,10 +327,10 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {(courses || []).map((c: any) => (
                   <div key={c.id} className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-                    <div className="flex items-center gap-2 mb-2"><BookOpen className="w-4 h-4 text-[#F5B800]" /><span className="text-[11px] px-2 py-0.5 rounded-full bg-[#FFF9E6] text-[#1B2A4A] capitalize">{(c.category || '').replace('_', ' ')}</span></div>
+                    <div className="flex items-center gap-2 mb-2"><BookOpen className="w-4 h-4 text-[#16A34A]" /><span className="text-[11px] px-2 py-0.5 rounded-full bg-[#EAF7EF] text-[#1B2A4A] capitalize">{(c.category || '').replace('_', ' ')}</span></div>
                     <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A]">{c.name}</h3>
                     <p className="text-[12px] text-[#718096] mt-1">{c.duration} · {c.mode}</p>
-                    <p className="font-display text-[18px] font-semibold text-[#F5B800] mt-2">₹{Number(c.fee).toLocaleString('en-IN')}</p>
+                    <p className="font-display text-[18px] font-semibold text-[#16A34A] mt-2">₹{Number(c.fee).toLocaleString('en-IN')}</p>
                   </div>
                 ))}
               </div>
@@ -377,7 +377,7 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
                     {(certificates || []).length === 0 ? <tr><td colSpan={5} className="p-8 text-center text-[#718096]">No certificates issued yet</td></tr> :
                       (certificates || []).map((c: any) => (
                         <tr key={c.id} className="hover:bg-[#F5F6FA]">
-                          <td className="p-4 text-[12px] font-mono text-[#F5B800] font-medium">{c.serialNumber}</td>
+                          <td className="p-4 text-[12px] font-mono text-[#16A34A] font-medium">{c.serialNumber}</td>
                           <td className="p-4 text-[13px] font-medium text-[#1B2A4A]">{c.studentName}</td>
                           <td className="p-4 text-[13px] text-[#4A5568]">{c.courseName}</td>
                           <td className="p-4"><span className={badge(c.status)}>{c.status}</span></td>
@@ -398,7 +398,7 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
                     {(centreMarksheets || []).length === 0 ? <tr><td colSpan={5} className="p-8 text-center text-[#718096]">No marksheets yet</td></tr> :
                       (centreMarksheets || []).map((m: any) => (
                         <tr key={m.id} className="hover:bg-[#F5F6FA]">
-                          <td className="p-4 text-[12px] font-mono text-[#F5B800] font-medium">{m.marksheetNumber}</td>
+                          <td className="p-4 text-[12px] font-mono text-[#16A34A] font-medium">{m.marksheetNumber}</td>
                           <td className="p-4 text-[13px] font-medium text-[#1B2A4A]">{m.studentName}</td>
                           <td className="p-4 text-[13px]">{Number(m.percentage)}%</td>
                           <td className="p-4"><span className={badge(m.resultStatus)}>{m.resultStatus}</span></td>
@@ -420,7 +420,7 @@ function CentreDash({ centerId, onLogout }: { centerId: number; onLogout: () => 
                   (downloads || []).map((d: any) => (
                     <div key={d.id} className="bg-white rounded-xl border border-[#E8EDF5] p-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-[#FFF9E6] flex items-center justify-center"><FileText className="w-5 h-5 text-[#F5B800]" /></div>
+                        <div className="w-10 h-10 rounded-lg bg-[#EAF7EF] flex items-center justify-center"><FileText className="w-5 h-5 text-[#16A34A]" /></div>
                         <div>
                           <p className="text-[13px] font-medium text-[#1B2A4A]">{d.title}</p>
                           <p className="text-[11px] text-[#718096] capitalize">{(d.type || '').replace('_', ' ')} · {d.fileSize || ''}</p>
@@ -471,10 +471,10 @@ function CentrePayModal({ centerId, payout, onClose, onDone }: { centerId: numbe
           {payout.paymentMode === 'upi' && <p className="text-[#718096]">UPI: {payout.upiId}</p>}
           {payout.paymentMode === 'bank' && <p className="text-[#718096]">{payout.accountHolderName} · {payout.accountNumber} · {payout.ifscCode} · {payout.bankName}</p>}
         </div>
-        <input placeholder="Payment reference / UTR / Txn ID" value={ref} onChange={(e) => setRef(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800] mb-2" />
-        <input placeholder="Centre remarks (optional)" value={remarks} onChange={(e) => setRemarks(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800] mb-3" />
+        <input placeholder="Payment reference / UTR / Txn ID" value={ref} onChange={(e) => setRef(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A] mb-2" />
+        <input placeholder="Centre remarks (optional)" value={remarks} onChange={(e) => setRemarks(e.target.value)} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A] mb-3" />
         {err && <p className="text-[12px] text-red-500 mb-2">{err}</p>}
-        <button onClick={() => pay.mutate({ centreId: centerId, id: payout.id, paymentReference: ref, centreRemarks: remarks })} disabled={pay.isPending} className="w-full h-10 bg-[#F5B800] text-[#1B2A4A] rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">{pay.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}Mark as Paid</button>
+        <button onClick={() => pay.mutate({ centreId: centerId, id: payout.id, paymentReference: ref, centreRemarks: remarks })} disabled={pay.isPending} className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">{pay.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}Mark as Paid</button>
       </div>
     </div>
   );
@@ -507,14 +507,14 @@ function CentreReferrals({ centerId }: { centerId: number }) {
 
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
         <Tile icon={Award} label="Total Commission" value={`₹${ov?.totalCommission ?? 0}`} color="text-purple-600" bg="bg-purple-50" />
-        <Tile icon={CreditCard} label="Pending" value={`₹${ov?.pendingCommission ?? 0}`} color="text-[#F5B800]" bg="bg-[#FFF9E6]" />
+        <Tile icon={CreditCard} label="Pending" value={`₹${ov?.pendingCommission ?? 0}`} color="text-[#16A34A]" bg="bg-[#EAF7EF]" />
         <Tile icon={CheckCircle} label="Approved" value={`₹${ov?.approvedCommission ?? 0}`} color="text-[#22C55E]" bg="bg-[#F0FFF4]" />
         <Tile icon={Wallet} label="Outstanding" value={`₹${ov?.outstanding ?? 0}`} color="text-[#1B2A4A]" bg="bg-[#F5F6FA]" />
         <Tile icon={Send} label="Pending Payouts" value={ov?.pendingPayouts ?? 0} color="text-orange-500" bg="bg-orange-50" />
       </div>
 
       <div className="flex flex-wrap gap-2 border-b border-[#E8EDF5]">
-        {subs.map((s) => <button key={s} onClick={() => setSub(s)} className={`px-4 py-2 text-[13px] font-medium border-b-2 capitalize ${sub === s ? 'border-[#F5B800] text-[#1B2A4A]' : 'border-transparent text-[#718096]'}`}>{s}</button>)}
+        {subs.map((s) => <button key={s} onClick={() => setSub(s)} className={`px-4 py-2 text-[13px] font-medium border-b-2 capitalize ${sub === s ? 'border-[#16A34A] text-[#1B2A4A]' : 'border-transparent text-[#718096]'}`}>{s}</button>)}
       </div>
 
       {/* PAYOUTS */}
@@ -585,7 +585,7 @@ function CentreReferrals({ centerId }: { centerId: number }) {
                     <td className="p-3 text-[13px] font-semibold">₹{Number(w.walletBalance).toLocaleString('en-IN')}</td>
                     <td className="p-3 text-[13px]">₹{Number(w.totalEarned).toLocaleString('en-IN')}</td>
                     <td className="p-3 text-[13px]">₹{Number(w.totalWithdrawn).toLocaleString('en-IN')}</td>
-                    <td className="p-3 text-[13px] text-[#F5B800]">₹{Number(w.pendingAmount).toLocaleString('en-IN')}</td>
+                    <td className="p-3 text-[13px] text-[#16A34A]">₹{Number(w.pendingAmount).toLocaleString('en-IN')}</td>
                     <td className="p-3 text-[13px]">₹{Number(w.outstandingAmount).toLocaleString('en-IN')}</td>
                   </tr>
                 ))}

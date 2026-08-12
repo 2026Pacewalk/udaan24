@@ -63,7 +63,7 @@ export default function Downloads() {
                     onClick={() => setActiveCategory(cat)}
                     className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
                       activeCategory === cat
-                        ? 'bg-[#F5B800] text-[#1B2A4A]'
+                        ? 'bg-[#16A34A] text-white'
                         : 'bg-transparent border border-[#E8EDF5] text-[#4A5568] hover:border-[#1B2A4A]'
                     }`}
                   >
@@ -77,7 +77,7 @@ export default function Downloads() {
                   type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full h-10 pl-11 pr-4 bg-[#F5F6FA] border border-[#E8EDF5] rounded-full text-[13px] outline-none focus:border-[#F5B800]"
+                  className="w-full h-10 pl-11 pr-4 bg-[#F5F6FA] border border-[#E8EDF5] rounded-full text-[13px] outline-none focus:border-[#16A34A]"
                   placeholder="Search files..."
                 />
               </div>
@@ -92,16 +92,16 @@ export default function Downloads() {
               {filtered.map((d, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-4 bg-white border border-[#E8EDF5] rounded-xl p-5 hover:shadow-sm hover:border-[#F5B800]/30 transition-all group"
+                  className="flex items-center gap-4 bg-white border border-[#E8EDF5] rounded-xl p-5 hover:shadow-sm hover:border-[#16A34A]/30 transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#FFF9E6] flex items-center justify-center flex-shrink-0 group-hover:bg-[#F5B800] transition-colors">
-                    <d.icon className="w-6 h-6 text-[#F5B800] group-hover:text-[#1B2A4A] transition-colors" />
+                  <div className="w-12 h-12 rounded-xl bg-[#EAF7EF] flex items-center justify-center flex-shrink-0 group-hover:bg-[#16A34A] transition-colors">
+                    <d.icon className="w-6 h-6 text-[#16A34A] group-hover:text-[#1B2A4A] transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-[14px] font-medium text-[#1B2A4A] truncate">{d.title}</h3>
                     <p className="text-[12px] text-[#718096]">{d.format} &middot; {d.size}</p>
                   </div>
-                  <button className="w-9 h-9 rounded-lg border border-[#E8EDF5] flex items-center justify-center hover:bg-[#F5B800] hover:border-[#F5B800] transition-all group-hover:border-[#F5B800]">
+                  <button className="w-9 h-9 rounded-lg border border-[#E8EDF5] flex items-center justify-center hover:bg-[#16A34A] hover:border-[#16A34A] transition-all group-hover:border-[#16A34A]">
                     <Download className="w-4 h-4 text-[#718096] group-hover:text-[#1B2A4A] transition-colors" />
                   </button>
                 </div>

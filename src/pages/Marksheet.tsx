@@ -8,7 +8,7 @@ export default function Marksheet() {
   const { id } = useParams();
   const { data, isLoading } = trpc.marksheets.detail.useQuery({ id: Number(id) }, { enabled: !!id });
 
-  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
   if (!data?.ms) return <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#F5F6FA]"><p className="text-[#718096]">Marksheet not found.</p><Link to="/" className="text-[#0071E3]">Home</Link></div>;
 
   const { ms, subjects, student, course, centre } = data;
@@ -29,12 +29,12 @@ export default function Marksheet() {
         <div className="border-[3px] border-[#1B2A4A] m-[14px]" style={{ minHeight: 1095 }}>
           <div className="p-8">
             {/* Header */}
-            <div className="flex items-center justify-between border-b-2 border-[#F5B800] pb-4">
+            <div className="flex items-center justify-between border-b-2 border-[#16A34A] pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
+                <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
                 <div>
                   <p className="font-display text-[22px] font-bold text-[#1B2A4A] leading-none">Udaan24.com</p>
-                  <p className="text-[10px] tracking-[0.18em] text-[#F5B800] uppercase">AI Coaching Institute · Kotkapura, Punjab</p>
+                  <p className="text-[10px] tracking-[0.18em] text-[#16A34A] uppercase">AI Coaching Institute · Kotkapura, Punjab</p>
                 </div>
               </div>
               {student?.photo ? <img src={student.photo} alt="" className="w-[80px] h-[96px] object-cover rounded border border-[#E8EDF5]" /> : <div className="w-[80px] h-[96px] rounded border border-[#E8EDF5] bg-[#F5F6FA] flex items-center justify-center text-[10px] text-[#A0AEC0]">Photo</div>}
@@ -70,11 +70,11 @@ export default function Marksheet() {
                     <td className="p-2.5 border-t border-[#E8EDF5] text-center">{s.grade}</td>
                   </tr>
                 ))}
-                <tr className="bg-[#FFF9E6] font-semibold text-[#1B2A4A]">
-                  <td className="p-2.5 border-t-2 border-[#F5B800]">Total</td>
-                  <td className="p-2.5 border-t-2 border-[#F5B800] text-center">{ms.totalMarks}</td>
-                  <td className="p-2.5 border-t-2 border-[#F5B800] text-center">{ms.obtainedMarks}</td>
-                  <td className="p-2.5 border-t-2 border-[#F5B800] text-center">{ms.grade}</td>
+                <tr className="bg-[#EAF7EF] font-semibold text-[#1B2A4A]">
+                  <td className="p-2.5 border-t-2 border-[#16A34A]">Total</td>
+                  <td className="p-2.5 border-t-2 border-[#16A34A] text-center">{ms.totalMarks}</td>
+                  <td className="p-2.5 border-t-2 border-[#16A34A] text-center">{ms.obtainedMarks}</td>
+                  <td className="p-2.5 border-t-2 border-[#16A34A] text-center">{ms.grade}</td>
                 </tr>
               </tbody>
             </table>
@@ -82,7 +82,7 @@ export default function Marksheet() {
             {/* Result summary */}
             <div className="grid grid-cols-3 gap-3 mt-5 text-center">
               <div className="bg-[#F0F5FF] rounded-lg p-3"><p className="text-[11px] uppercase text-[#718096]">Percentage</p><p className="font-display text-[22px] font-semibold text-[#0071E3]">{Number(ms.percentage)}%</p></div>
-              <div className="bg-[#FFF9E6] rounded-lg p-3"><p className="text-[11px] uppercase text-[#718096]">Grade</p><p className="font-display text-[22px] font-semibold text-[#F5B800]">{ms.grade}</p></div>
+              <div className="bg-[#EAF7EF] rounded-lg p-3"><p className="text-[11px] uppercase text-[#718096]">Grade</p><p className="font-display text-[22px] font-semibold text-[#16A34A]">{ms.grade}</p></div>
               <div className={`rounded-lg p-3 ${ms.resultStatus === 'pass' ? 'bg-[#F0FFF4]' : 'bg-[#FFF5F5]'}`}><p className="text-[11px] uppercase text-[#718096]">Result</p><p className={`font-display text-[22px] font-semibold capitalize ${ms.resultStatus === 'pass' ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>{ms.resultStatus}</p></div>
             </div>
 

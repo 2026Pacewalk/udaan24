@@ -155,7 +155,7 @@ export default function HeroMarble() {
             <Download className="w-4 h-4" />
             Prospectus
           </Link>
-          <button className="flex items-center gap-2 text-[#1B2A4A] font-medium text-[15px] hover:text-[#F5B800] transition-colors duration-200">
+          <button className="flex items-center gap-2 text-[#1B2A4A] font-medium text-[15px] hover:text-[#16A34A] transition-colors duration-200">
             <div className="w-10 h-10 rounded-full border-2 border-[#1B2A4A] flex items-center justify-center">
               <Play className="w-4 h-4 ml-0.5" />
             </div>
@@ -166,9 +166,9 @@ export default function HeroMarble() {
         {/* Trust Badges */}
         <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-60">
           <span className="font-mono-accent text-[11px] text-[#718096] uppercase tracking-widest">AI Coaching Kotkapura</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" />
           <span className="font-mono-accent text-[11px] text-[#718096] uppercase tracking-widest">Live Projects</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" />
           <span className="font-mono-accent text-[11px] text-[#718096] uppercase tracking-widest">Certified Training</span>
         </div>
       </div>

@@ -19,7 +19,7 @@ export default function About() {
         {/* Hero */}
         <section className="pt-[100px] pb-16 bg-[#1B2A4A]">
           <div className="container-main text-center">
-            <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#F5B800] uppercase mb-4 block">
+            <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#16A34A] uppercase mb-4 block">
               About Us
             </span>
             <h1 className="font-display text-[36px] md:text-[48px] font-semibold text-white leading-[1.1] tracking-[-1.5px] mb-4">
@@ -60,7 +60,7 @@ export default function About() {
                   alt="Udaan24 AI Coaching Kotkapura"
                   className="rounded-2xl w-full h-[400px] object-cover"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-[#F5B800] rounded-xl p-6 shadow-lg">
+                <div className="absolute -bottom-6 -left-6 bg-[#16A34A] rounded-xl p-6 shadow-lg">
                   <div className="font-display text-[36px] font-semibold text-[#1B2A4A]">2,000+</div>
                   <div className="text-[13px] text-[#1B2A4A]/80 font-medium">AI Students Trained</div>
                 </div>
@@ -69,8 +69,8 @@ export default function About() {
 
             {/* Mission & Vision */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-              <div className="card-standard !bg-[#FFF9E6] !border-[#F5B800]/20">
-                <Target className="w-10 h-10 text-[#F5B800] mb-4" />
+              <div className="card-standard !bg-[#EAF7EF] !border-[#16A34A]/20">
+                <Target className="w-10 h-10 text-[#16A34A] mb-4" />
                 <h3 className="font-display text-[24px] font-semibold text-[#1B2A4A] mb-3">Our Mission</h3>
                 <p className="text-[14px] text-[#4A5568] leading-relaxed">
                   To make Artificial Intelligence education affordable and accessible to every student in Punjab. We aim to bridge the AI skill gap through hands-on training with real projects, enabling students to build careers in the world's fastest-growing field.
@@ -96,7 +96,7 @@ export default function About() {
                   />
                 </div>
                 <div className="lg:col-span-2">
-                  <Quote className="w-10 h-10 text-[#F5B800] mb-4" />
+                  <Quote className="w-10 h-10 text-[#16A34A] mb-4" />
                   <p className="font-display text-[20px] md:text-[24px] text-[#1B2A4A] leading-relaxed italic mb-6">
                     "When we started Udaan24, we saw students from Punjab moving to big cities for AI education. Why should they? We brought world-class AI coaching right here to Kotkapura. Today, our students are building AI solutions for companies across India while staying rooted in Punjab."
                   </p>
@@ -117,8 +117,8 @@ export default function About() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {facilities.map((f) => (
                   <div key={f.title} className="card-standard text-center">
-                    <div className="w-14 h-14 rounded-xl bg-[#FFF9E6] flex items-center justify-center mx-auto mb-4">
-                      <f.icon className="w-7 h-7 text-[#F5B800]" />
+                    <div className="w-14 h-14 rounded-xl bg-[#EAF7EF] flex items-center justify-center mx-auto mb-4">
+                      <f.icon className="w-7 h-7 text-[#16A34A]" />
                     </div>
                     <h3 className="font-body text-[17px] font-semibold text-[#1B2A4A] mb-2">{f.title}</h3>
                     <p className="text-[13px] text-[#4A5568]">{f.desc}</p>

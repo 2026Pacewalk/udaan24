@@ -91,7 +91,7 @@ export default function Franchise() {
         {/* Hero */}
         <section className="pt-[100px] pb-16 bg-[#1B2A4A]">
           <div className="container-main text-center">
-            <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#F5B800] uppercase mb-4 block">
+            <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#16A34A] uppercase mb-4 block">
               Study Centre Opportunity
             </span>
             <h1 className="font-display text-[36px] md:text-[52px] font-semibold text-white leading-[1.1] tracking-[-1.5px] mb-6">
@@ -119,8 +119,8 @@ export default function Franchise() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.map((b) => (
                 <div key={b.title} className="card-standard flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-xl bg-[#FFF9E6] flex items-center justify-center mb-4">
-                    <b.icon className="w-7 h-7 text-[#F5B800]" />
+                  <div className="w-14 h-14 rounded-xl bg-[#EAF7EF] flex items-center justify-center mb-4">
+                    <b.icon className="w-7 h-7 text-[#16A34A]" />
                   </div>
                   <h3 className="font-body text-[18px] font-semibold text-[#1B2A4A] mb-2">{b.title}</h3>
                   <p className="text-[14px] text-[#4A5568]">{b.desc}</p>
@@ -135,7 +135,7 @@ export default function Franchise() {
           <div className="container-main">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#F5B800] uppercase mb-4 block">
+                <span className="font-mono-accent text-[12px] tracking-[0.1em] text-[#16A34A] uppercase mb-4 block">
                   Return on Investment
                 </span>
                 <h2 className="font-display text-[32px] md:text-[42px] font-semibold text-white leading-tight tracking-[-1.2px] mb-6">
@@ -148,7 +148,7 @@ export default function Franchise() {
                   {roiData.map((r) => (
                     <div key={r.label} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
                       <div className="text-[12px] text-white/50 uppercase tracking-wider mb-1">{r.label}</div>
-                      <div className="font-display text-[20px] font-semibold text-[#F5B800]">{r.value}</div>
+                      <div className="font-display text-[20px] font-semibold text-[#16A34A]">{r.value}</div>
                     </div>
                   ))}
                 </div>
@@ -188,7 +188,7 @@ export default function Franchise() {
         </section>
 
         {/* Application Form */}
-        <section id="apply" className="section-padding bg-[#FFF9E6]">
+        <section id="apply" className="section-padding bg-[#EAF7EF]">
           <div className="container-main">
             <div className="max-w-[700px] mx-auto">
               <div className="text-center mb-10">
@@ -214,7 +214,7 @@ export default function Franchise() {
                   <div className="flex items-center justify-center gap-2 mb-8">
                     {[1, 2, 3].map((s) => (
                       <div key={s} className={`w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-semibold ${
-                        formStep >= s ? 'bg-[#F5B800] text-[#1B2A4A]' : 'bg-[#E8EDF5] text-[#718096]'
+                        formStep >= s ? 'bg-[#16A34A] text-white' : 'bg-[#E8EDF5] text-[#718096]'
                       }`}>
                         {s}
                       </div>

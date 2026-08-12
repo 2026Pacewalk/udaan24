@@ -58,7 +58,7 @@ export default function CoursesSection() {
         </div>
 
         {isLoading ? (
-          <div className="text-center py-12"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin mx-auto" /></div>
+          <div className="text-center py-12"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin mx-auto" /></div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {courses.map((course) => (
@@ -73,7 +73,7 @@ export default function CoursesSection() {
                   ) : (
                     <course.icon className="w-12 h-12 text-white/30" />
                   )}
-                  <span className="absolute top-3 right-3 font-mono-accent text-[10px] bg-[#F5B800] text-[#1B2A4A] px-3 py-1 rounded-full font-medium">
+                  <span className="absolute top-3 right-3 font-mono-accent text-[10px] bg-[#16A34A] text-white px-3 py-1 rounded-full font-medium">
                     {course.duration}
                   </span>
                 </div>
@@ -87,9 +87,9 @@ export default function CoursesSection() {
                   <div className="mt-auto flex items-end justify-between">
                     <div>
                       <div className="text-[10px] text-white/40 uppercase tracking-wide">Starts at</div>
-                      <div className="font-display text-[18px] font-semibold text-[#F5B800]">{course.onlineFee}</div>
+                      <div className="font-display text-[18px] font-semibold text-[#16A34A]">{course.onlineFee}</div>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-[#F5B800] group-hover:translate-x-1 transition-all duration-200" />
+                    <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-[#16A34A] group-hover:translate-x-1 transition-all duration-200" />
                   </div>
                 </div>
               </Link>

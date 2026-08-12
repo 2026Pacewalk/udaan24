@@ -40,11 +40,11 @@ function FAQItem({ faq, isOpen, onClick }: { faq: FAQ; isOpen: boolean; onClick:
         onClick={onClick}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
-        <span className={`font-body text-[15px] font-medium transition-colors duration-200 pr-4 ${isOpen ? 'text-[#F5B800]' : 'text-[#1B2A4A] group-hover:text-[#F5B800]'}`}>
+        <span className={`font-body text-[15px] font-medium transition-colors duration-200 pr-4 ${isOpen ? 'text-[#16A34A]' : 'text-[#1B2A4A] group-hover:text-[#16A34A]'}`}>
           {faq.question}
         </span>
         <ChevronDown
-          className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#F5B800]' : 'text-[#718096]'}`}
+          className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#16A34A]' : 'text-[#718096]'}`}
         />
       </button>
       <div

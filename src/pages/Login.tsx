@@ -42,7 +42,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA] p-4">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center mx-auto mb-2">
+          <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-2">
             <GraduationCap className="w-7 h-7 text-[#1B2A4A]" />
           </div>
           <CardTitle>Udaan24 Admin Login</CardTitle>
@@ -63,7 +63,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]"
+                className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]"
                 placeholder="admin@udaan24.com"
               />
             </div>
@@ -74,7 +74,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]"
+                className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]"
                 placeholder="••••••••"
               />
             </div>

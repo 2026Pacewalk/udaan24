@@ -62,7 +62,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-[14px] text-white/50 hover:text-[#F5B800] transition-colors duration-200"
+                    className="text-[14px] text-white/50 hover:text-[#16A34A] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-[14px] text-white/50 hover:text-[#F5B800] transition-colors duration-200"
+                    className="text-[14px] text-white/50 hover:text-[#16A34A] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -97,22 +97,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#F5B800] mt-1 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-[#16A34A] mt-1 flex-shrink-0" />
                 <span className="text-[14px] text-white/50">
                   Batian Wala Chownk, Above Punjab &amp; Sind Bank<br />
                   Kotkapura, Punjab 151204
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#F5B800] flex-shrink-0" />
+                <Phone className="w-4 h-4 text-[#16A34A] flex-shrink-0" />
                 <span className="text-[14px] text-white/50">+91 97808 43440</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#F5B800] flex-shrink-0" />
+                <Mail className="w-4 h-4 text-[#16A34A] flex-shrink-0" />
                 <span className="text-[14px] text-white/50">info@udaan24.com</span>
               </li>
               <li className="flex items-center gap-3">
-                <MessageCircle className="w-4 h-4 text-[#F5B800] flex-shrink-0" />
+                <MessageCircle className="w-4 h-4 text-[#16A34A] flex-shrink-0" />
                 <span className="text-[14px] text-white/50">WhatsApp: +91 97808 43440</span>
               </li>
             </ul>
@@ -142,7 +142,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Udaan24.com - AI Coaching Institute Kotkapura. All rights reserved.
             <span className="mx-2 text-white/20">|</span>
             Designed &amp; Developed by{' '}
-            <a href="https://pacewalk.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#F5B800] font-medium transition-colors">
+            <a href="https://pacewalk.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#16A34A] font-medium transition-colors">
               PACEWALK
             </a>
           </p>

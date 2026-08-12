@@ -24,7 +24,7 @@ function StudentLogin({ onLogin }: { onLogin: (id: number) => void }) {
     <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA] p-4">
       <div className="w-full max-w-sm bg-white rounded-2xl border border-[#E8EDF5] p-8">
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-3">
             <GraduationCap className="w-7 h-7 text-[#1B2A4A]" />
           </div>
           <h1 className="font-display text-[20px] font-semibold text-[#1B2A4A]">Student Portal</h1>
@@ -37,18 +37,18 @@ function StudentLogin({ onLogin }: { onLogin: (id: number) => void }) {
           <div>
             <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Student ID or Username</label>
             <input value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} required
-              className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]"
+              className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]"
               placeholder="UAN24XXXX or username" />
           </div>
           <div>
             <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Password</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
-              className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]"
+              className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]"
               placeholder="••••••••" />
           </div>
           {error && <p className="text-[12px] text-red-500">{error}</p>}
           <button type="submit" disabled={login.isPending}
-            className="w-full h-10 bg-[#F5B800] text-[#1B2A4A] rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 hover:bg-[#E0A800] disabled:opacity-60">
+            className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 hover:bg-[#15803D] disabled:opacity-60">
             {login.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign in'}
           </button>
         </form>
@@ -75,18 +75,18 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
   const { data: myMarksheets } = trpc.marksheets.byStudent.useQuery({ studentId });
   const [tab, setTab] = useState('dashboard');
 
-  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin" /></div>;
+  if (isLoading) return <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA]"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin" /></div>;
   if (error || !data) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F6FA] gap-3">
         <p className="text-[14px] text-[#718096]">Could not load your data.</p>
-        <button onClick={onLogout} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold">Back to login</button>
+        <button onClick={onLogout} className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold">Back to login</button>
       </div>
     );
   }
 
   const { student, course, center, attendance, results, payments, certificates, notifications } = data;
-  const feeColor = student.feeStatus === 'paid' ? 'text-[#22C55E]' : student.feeStatus === 'partial' ? 'text-[#F5B800]' : 'text-[#EF4444]';
+  const feeColor = student.feeStatus === 'paid' ? 'text-[#22C55E]' : student.feeStatus === 'partial' ? 'text-[#16A34A]' : 'text-[#EF4444]';
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard' },
@@ -100,7 +100,7 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
       <header className="bg-[#1B2A4A] text-white">
         <div className="max-w-[1100px] mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-lg bg-[#F5B800] flex items-center justify-center"><GraduationCap className="w-5 h-5 text-[#1B2A4A]" /></div>
+            <div className="w-9 h-9 rounded-lg bg-[#16A34A] flex items-center justify-center"><GraduationCap className="w-5 h-5 text-[#1B2A4A]" /></div>
             <span className="font-display text-[16px] font-semibold">Udaan24 Student</span>
           </Link>
           <div className="flex items-center gap-4">
@@ -108,13 +108,13 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
               <p className="text-[13px] font-medium leading-tight">{student.name}</p>
               <p className="text-[11px] text-white/60">{student.rollNumber}</p>
             </div>
-            {student.photo ? <img src={student.photo} alt="" className="w-9 h-9 rounded-full object-cover" /> : <div className="w-9 h-9 rounded-full bg-[#F5B800] flex items-center justify-center text-[#1B2A4A] text-[13px] font-bold">{student.name.charAt(0)}</div>}
+            {student.photo ? <img src={student.photo} alt="" className="w-9 h-9 rounded-full object-cover" /> : <div className="w-9 h-9 rounded-full bg-[#16A34A] flex items-center justify-center text-[#1B2A4A] text-[13px] font-bold">{student.name.charAt(0)}</div>}
             <button onClick={onLogout} className="text-white/60 hover:text-white" title="Logout"><LogOut className="w-5 h-5" /></button>
           </div>
         </div>
         <div className="max-w-[1100px] mx-auto px-4 flex gap-1">
           {tabs.map((t) => (
-            <button key={t.id} onClick={() => setTab(t.id)} className={`px-4 py-2.5 text-[13px] font-medium border-b-2 transition-colors ${tab === t.id ? 'border-[#F5B800] text-white' : 'border-transparent text-white/50 hover:text-white'}`}>{t.label}</button>
+            <button key={t.id} onClick={() => setTab(t.id)} className={`px-4 py-2.5 text-[13px] font-medium border-b-2 transition-colors ${tab === t.id ? 'border-[#16A34A] text-white' : 'border-transparent text-white/50 hover:text-white'}`}>{t.label}</button>
           ))}
         </div>
       </header>
@@ -124,22 +124,22 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
         {tab === 'buy' && <BuyCourseView studentId={studentId} />}
         {tab === 'dashboard' && <>
         {student.admissionStatus !== 'completed' && (
-          <div className="bg-[#FFF9E6] border border-[#F5B800]/40 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="bg-[#EAF7EF] border border-[#16A34A]/40 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <AlertCircle className="w-5 h-5 text-[#F5B800] flex-shrink-0" />
+              <AlertCircle className="w-5 h-5 text-[#16A34A] flex-shrink-0" />
               <div>
                 <p className="text-[14px] font-semibold text-[#1B2A4A]">Complete your admission details</p>
                 <p className="text-[12px] text-[#718096]">Your certificate, exam and course access stay limited until your mandatory admission form is completed.</p>
               </div>
             </div>
-            <Link to="/admission" className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap text-center">Complete Now</Link>
+            <Link to="/admission" className="bg-[#16A34A] text-white px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap text-center">Complete Now</Link>
           </div>
         )}
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <Tile icon={Percent} label="Attendance" value={`${attendance.percentage}%`} color="text-[#0071E3]" bg="bg-[#F0F5FF]" />
           <Tile icon={Award} label="Exam Results" value={results.length} color="text-[#22C55E]" bg="bg-[#F0FFF4]" />
-          <Tile icon={CreditCard} label="Fee Status" value={<span className={`capitalize ${feeColor}`}>{student.feeStatus}</span>} color="text-[#F5B800]" bg="bg-[#FFF9E6]" />
+          <Tile icon={CreditCard} label="Fee Status" value={<span className={`capitalize ${feeColor}`}>{student.feeStatus}</span>} color="text-[#16A34A]" bg="bg-[#EAF7EF]" />
           <Tile icon={Award} label="Certificates" value={certificates.length} color="text-orange-500" bg="bg-orange-50" />
         </div>
 
@@ -147,7 +147,7 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
           {/* Profile + course + centre */}
           <div className="space-y-6">
             <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><User className="w-4 h-4 text-[#F5B800]" />Profile</h3>
+              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><User className="w-4 h-4 text-[#16A34A]" />Profile</h3>
               <dl className="space-y-2 text-[13px]">
                 <div className="flex justify-between"><dt className="text-[#718096]">Name</dt><dd className="text-[#1B2A4A] font-medium">{student.name}</dd></div>
                 <div className="flex justify-between"><dt className="text-[#718096]">Student ID</dt><dd className="text-[#1B2A4A] font-medium">{student.rollNumber}</dd></div>
@@ -158,7 +158,7 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
               </dl>
             </div>
             <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 text-[#F5B800]" />My Course</h3>
+              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 text-[#16A34A]" />My Course</h3>
               {course ? (
                 <>
                   <p className="text-[14px] font-medium text-[#1B2A4A]">{course.name}</p>
@@ -168,7 +168,7 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
               ) : <p className="text-[13px] text-[#718096]">No course assigned</p>}
             </div>
             <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-3 flex items-center gap-2"><Building2 className="w-4 h-4 text-[#F5B800]" />My Centre</h3>
+              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-3 flex items-center gap-2"><Building2 className="w-4 h-4 text-[#16A34A]" />My Centre</h3>
               {center ? (
                 <>
                   <p className="text-[14px] font-medium text-[#1B2A4A]">{center.name}</p>
@@ -181,7 +181,7 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
           {/* Results + fees */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Award className="w-4 h-4 text-[#F5B800]" />Exam Results & Marksheet</h3>
+              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Award className="w-4 h-4 text-[#16A34A]" />Exam Results & Marksheet</h3>
               {results.length === 0 ? <p className="text-[13px] text-[#718096]">No results published yet.</p> : (
                 <div className="space-y-2">
                   {results.map((r: any) => (
@@ -199,13 +199,13 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
 
             {certificates.length > 0 && (
               <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-                <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><FileText className="w-4 h-4 text-[#F5B800]" />Certificates</h3>
+                <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><FileText className="w-4 h-4 text-[#16A34A]" />Certificates</h3>
                 <div className="space-y-2">
                   {certificates.map((c: any) => (
                     <div key={c.id} className="flex items-center justify-between p-3 bg-[#F5F6FA] rounded-lg">
                       <div>
                         <p className="text-[13px] font-medium text-[#1B2A4A]">{c.courseName}</p>
-                        <p className="text-[12px] font-mono text-[#F5B800]">{c.serialNumber}</p>
+                        <p className="text-[12px] font-mono text-[#16A34A]">{c.serialNumber}</p>
                       </div>
                       <a href={`/certificate/${c.id}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-[12px] text-[#0071E3] font-medium"><Download className="w-3.5 h-3.5" />View / Download</a>
                     </div>
@@ -216,13 +216,13 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
 
             {(myMarksheets || []).length > 0 && (
               <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-                <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><FileText className="w-4 h-4 text-[#F5B800]" />Marksheets</h3>
+                <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><FileText className="w-4 h-4 text-[#16A34A]" />Marksheets</h3>
                 <div className="space-y-2">
                   {(myMarksheets || []).map((m: any) => (
                     <div key={m.id} className="flex items-center justify-between p-3 bg-[#F5F6FA] rounded-lg">
                       <div>
                         <p className="text-[13px] font-medium text-[#1B2A4A]">{Number(m.percentage)}% · Grade {m.grade} · <span className="capitalize">{m.resultStatus}</span></p>
-                        <p className="text-[12px] font-mono text-[#F5B800]">{m.marksheetNumber}</p>
+                        <p className="text-[12px] font-mono text-[#16A34A]">{m.marksheetNumber}</p>
                       </div>
                       <a href={`/marksheet/${m.id}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-[12px] text-[#0071E3] font-medium"><Download className="w-3.5 h-3.5" />View / Download</a>
                     </div>
@@ -232,9 +232,9 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
             )}
 
             <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><CreditCard className="w-4 h-4 text-[#F5B800]" />Fee & Payments</h3>
+              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><CreditCard className="w-4 h-4 text-[#16A34A]" />Fee & Payments</h3>
               <div className="flex items-center gap-2 mb-3">
-                {student.feeStatus === 'paid' ? <CheckCircle className="w-4 h-4 text-[#22C55E]" /> : <AlertCircle className="w-4 h-4 text-[#F5B800]" />}
+                {student.feeStatus === 'paid' ? <CheckCircle className="w-4 h-4 text-[#22C55E]" /> : <AlertCircle className="w-4 h-4 text-[#16A34A]" />}
                 <span className="text-[13px] text-[#4A5568]">Current status: <span className={`capitalize font-medium ${feeColor}`}>{student.feeStatus}</span></span>
               </div>
               {payments.length === 0 ? <p className="text-[13px] text-[#718096]">No payment records.</p> : (
@@ -250,7 +250,7 @@ function StudentDashboard({ studentId, onLogout }: { studentId: number; onLogout
             </div>
 
             <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Bell className="w-4 h-4 text-[#F5B800]" />Notifications</h3>
+              <h3 className="font-body text-[14px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Bell className="w-4 h-4 text-[#16A34A]" />Notifications</h3>
               {notifications.length === 0 ? <p className="text-[13px] text-[#718096]">No notifications.</p> : (
                 <div className="space-y-2">
                   {notifications.map((n: any) => (
@@ -297,7 +297,7 @@ function ReferEarnView({ studentId, studentName }: { studentId: number; studentN
     onError: (e) => setMsg(e.message),
   });
 
-  if (!me) return <div className="flex justify-center py-12"><Loader2 className="w-7 h-7 text-[#F5B800] animate-spin" /></div>;
+  if (!me) return <div className="flex justify-center py-12"><Loader2 className="w-7 h-7 text-[#16A34A] animate-spin" /></div>;
 
   const link = `${window.location.origin}${me.referralPath}`;
   const waText = encodeURIComponent(`Join Udaan24 AI Coaching and get 5% off any course! Register with my link: ${link}`);
@@ -312,11 +312,11 @@ function ReferEarnView({ studentId, studentName }: { studentId: number; studentN
     <div className="space-y-6">
       {/* Referral link card */}
       <div className="bg-gradient-to-br from-[#1B2A4A] to-[#2A3F5F] rounded-2xl p-6 text-white">
-        <div className="flex items-center gap-2 mb-2"><Gift className="w-5 h-5 text-[#F5B800]" /><h3 className="font-display text-[18px] font-semibold">Refer & Earn</h3></div>
+        <div className="flex items-center gap-2 mb-2"><Gift className="w-5 h-5 text-[#16A34A]" /><h3 className="font-display text-[18px] font-semibold">Refer & Earn</h3></div>
         <p className="text-[13px] text-white/70 mb-4">Share your link — friends get <b>{me.settings.discountPercent}% off</b>, you earn <b>{me.settings.commissionPercent}% commission</b> on their purchase.</p>
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 text-[13px] font-mono truncate">{link}</div>
-          <button onClick={() => { navigator.clipboard?.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1500); }} className="bg-[#F5B800] text-[#1B2A4A] px-4 py-2.5 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5"><Copy className="w-4 h-4" />{copied ? 'Copied!' : 'Copy'}</button>
+          <button onClick={() => { navigator.clipboard?.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1500); }} className="bg-[#16A34A] text-white px-4 py-2.5 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5"><Copy className="w-4 h-4" />{copied ? 'Copied!' : 'Copy'}</button>
           <a href={`https://wa.me/?text=${waText}`} target="_blank" rel="noreferrer" className="bg-[#25D366] text-white px-4 py-2.5 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5"><Share2 className="w-4 h-4" />WhatsApp</a>
         </div>
       </div>
@@ -325,7 +325,7 @@ function ReferEarnView({ studentId, studentName }: { studentId: number; studentN
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
         <SummaryCard label="Total Referrals" value={ov?.totalReferrals ?? 0} />
         <SummaryCard label="Purchases" value={ov?.successfulPurchases ?? 0} />
-        <SummaryCard label="Pending" value={`₹${ov?.pendingCommission ?? 0}`} color="text-[#F5B800]" />
+        <SummaryCard label="Pending" value={`₹${ov?.pendingCommission ?? 0}`} color="text-[#16A34A]" />
         <SummaryCard label="Approved" value={`₹${ov?.approvedCommission ?? 0}`} color="text-[#22C55E]" />
         <SummaryCard label="Paid" value={`₹${ov?.paidCommission ?? 0}`} color="text-[#0071E3]" />
         <SummaryCard label="Wallet Balance" value={`₹${ov?.walletBalance ?? 0}`} color="text-[#1B2A4A]" />
@@ -357,7 +357,7 @@ function ReferEarnView({ studentId, studentName }: { studentId: number; studentN
         {/* Wallet + payout */}
         <div className="space-y-6">
           <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-            <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Wallet className="w-4 h-4 text-[#F5B800]" />Wallet</h3>
+            <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Wallet className="w-4 h-4 text-[#16A34A]" />Wallet</h3>
             <div className="grid grid-cols-2 gap-3 text-[13px]">
               <div><span className="text-[#718096]">Balance</span><p className="font-display text-[20px] font-semibold text-[#1B2A4A]">₹{wallet?.walletBalance ?? 0}</p></div>
               <div><span className="text-[#718096]">Available to withdraw</span><p className="font-display text-[20px] font-semibold text-[#22C55E]">₹{wallet?.available ?? 0}</p></div>
@@ -368,22 +368,22 @@ function ReferEarnView({ studentId, studentName }: { studentId: number; studentN
           </div>
 
           <div className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-            <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Send className="w-4 h-4 text-[#F5B800]" />Request Payout</h3>
+            <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A] mb-4 flex items-center gap-2"><Send className="w-4 h-4 text-[#16A34A]" />Request Payout</h3>
             <form onSubmit={(e) => { e.preventDefault(); setMsg(''); requestPayout.mutate({ studentId, amount: Number(payout.amount), paymentMode: payout.paymentMode, upiId: payout.upiId, accountHolderName: payout.accountHolderName, accountNumber: payout.accountNumber, ifscCode: payout.ifscCode, bankName: payout.bankName, remarks: payout.remarks }); }} className="space-y-3">
-              <input type="number" required placeholder={`Amount (min ₹${me.settings.minPayout})`} value={payout.amount || ''} onChange={(e) => setPayout({ ...payout, amount: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
-              <select value={payout.paymentMode} onChange={(e) => setPayout({ ...payout, paymentMode: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]">
+              <input type="number" required placeholder={`Amount (min ₹${me.settings.minPayout})`} value={payout.amount || ''} onChange={(e) => setPayout({ ...payout, amount: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
+              <select value={payout.paymentMode} onChange={(e) => setPayout({ ...payout, paymentMode: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]">
                 {me.settings.payoutModes.map((m: string) => <option key={m} value={m}>{m.toUpperCase()}</option>)}
               </select>
-              {payout.paymentMode === 'upi' && <input placeholder="UPI ID" value={payout.upiId || ''} onChange={(e) => setPayout({ ...payout, upiId: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />}
+              {payout.paymentMode === 'upi' && <input placeholder="UPI ID" value={payout.upiId || ''} onChange={(e) => setPayout({ ...payout, upiId: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />}
               {payout.paymentMode === 'bank' && <div className="grid grid-cols-2 gap-2">
-                <input placeholder="Account holder" value={payout.accountHolderName || ''} onChange={(e) => setPayout({ ...payout, accountHolderName: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
-                <input placeholder="Account number" value={payout.accountNumber || ''} onChange={(e) => setPayout({ ...payout, accountNumber: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
-                <input placeholder="IFSC" value={payout.ifscCode || ''} onChange={(e) => setPayout({ ...payout, ifscCode: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
-                <input placeholder="Bank name" value={payout.bankName || ''} onChange={(e) => setPayout({ ...payout, bankName: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
+                <input placeholder="Account holder" value={payout.accountHolderName || ''} onChange={(e) => setPayout({ ...payout, accountHolderName: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
+                <input placeholder="Account number" value={payout.accountNumber || ''} onChange={(e) => setPayout({ ...payout, accountNumber: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
+                <input placeholder="IFSC" value={payout.ifscCode || ''} onChange={(e) => setPayout({ ...payout, ifscCode: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
+                <input placeholder="Bank name" value={payout.bankName || ''} onChange={(e) => setPayout({ ...payout, bankName: e.target.value })} className="h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
               </div>}
-              <input placeholder="Remarks (optional)" value={payout.remarks || ''} onChange={(e) => setPayout({ ...payout, remarks: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#F5B800]" />
+              <input placeholder="Remarks (optional)" value={payout.remarks || ''} onChange={(e) => setPayout({ ...payout, remarks: e.target.value })} className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" />
               {msg && <p className={`text-[12px] ${msg.includes('✓') ? 'text-green-600' : 'text-red-500'}`}>{msg}</p>}
-              <button type="submit" disabled={requestPayout.isPending} className="w-full h-10 bg-[#F5B800] text-[#1B2A4A] rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">{requestPayout.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}Request Payout</button>
+              <button type="submit" disabled={requestPayout.isPending} className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 disabled:opacity-60">{requestPayout.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}Request Payout</button>
             </form>
             {(payouts || []).length > 0 && <div className="mt-4 space-y-1.5">
               {(payouts || []).map((p: any) => <div key={p.id} className="flex items-center justify-between text-[12px]"><span className="text-[#4A5568]">₹{Number(p.amount).toLocaleString('en-IN')} · {p.paymentMode}</span><span className={badge(p.status)}>{p.status}</span></div>)}
@@ -393,7 +393,7 @@ function ReferEarnView({ studentId, studentName }: { studentId: number; studentN
 
         {/* Statement / ledger */}
         <div className="bg-white rounded-xl border border-[#E8EDF5] overflow-hidden">
-          <div className="p-4 border-b border-[#E8EDF5]"><h3 className="font-body text-[15px] font-semibold text-[#1B2A4A] flex items-center gap-2"><FileText className="w-4 h-4 text-[#F5B800]" />Wallet Statement</h3></div>
+          <div className="p-4 border-b border-[#E8EDF5]"><h3 className="font-body text-[15px] font-semibold text-[#1B2A4A] flex items-center gap-2"><FileText className="w-4 h-4 text-[#16A34A]" />Wallet Statement</h3></div>
           <div className="overflow-x-auto max-h-[460px]"><table className="w-full">
             <thead className="bg-[#F5F6FA] sticky top-0"><tr className="text-left text-[11px] text-[#718096] uppercase"><th className="p-3 font-medium">Date</th><th className="p-3 font-medium">Type</th><th className="p-3 font-medium">Credit</th><th className="p-3 font-medium">Debit</th><th className="p-3 font-medium">Balance</th></tr></thead>
             <tbody className="divide-y divide-[#E8EDF5]">
@@ -442,11 +442,11 @@ function BuyCourseView({ studentId }: { studentId: number }) {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {(courses || []).map((c: any) => (
           <div key={c.id} className="bg-white rounded-xl border border-[#E8EDF5] p-5">
-            <div className="flex items-center gap-2 mb-2"><BookOpen className="w-4 h-4 text-[#F5B800]" /><span className="text-[11px] px-2 py-0.5 rounded-full bg-[#FFF9E6] text-[#1B2A4A] capitalize">{(c.category || '').replace('_', ' ')}</span></div>
+            <div className="flex items-center gap-2 mb-2"><BookOpen className="w-4 h-4 text-[#16A34A]" /><span className="text-[11px] px-2 py-0.5 rounded-full bg-[#EAF7EF] text-[#1B2A4A] capitalize">{(c.category || '').replace('_', ' ')}</span></div>
             <h3 className="font-body text-[15px] font-semibold text-[#1B2A4A]">{c.name}</h3>
             <p className="text-[12px] text-[#718096] mt-1">{c.duration} · {c.mode}</p>
             <div className="flex items-center justify-between mt-3">
-              <span className="font-display text-[18px] font-semibold text-[#F5B800]">₹{Number(c.fee).toLocaleString('en-IN')}</span>
+              <span className="font-display text-[18px] font-semibold text-[#16A34A]">₹{Number(c.fee).toLocaleString('en-IN')}</span>
               <button onClick={() => { setSelected(c); setResult(null); }} className="bg-[#1B2A4A] text-white text-[12px] font-semibold px-4 py-2 rounded-lg">Buy</button>
             </div>
           </div>

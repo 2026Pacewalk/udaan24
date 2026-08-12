@@ -112,7 +112,7 @@ export default function Courses() {
                   placeholder="Search courses..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full h-12 pl-11 pr-4 bg-white/10 border border-white/20 rounded-full text-white placeholder-white/50 text-[14px] focus:outline-none focus:border-[#F5B800]"
+                  className="w-full h-12 pl-11 pr-4 bg-white/10 border border-white/20 rounded-full text-white placeholder-white/50 text-[14px] focus:outline-none focus:border-[#16A34A]"
                 />
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function Courses() {
                   onClick={() => setActiveCategory(cat.value)}
                   className={`px-6 py-2.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
                     activeCategory === cat.value
-                      ? 'bg-[#F5B800] text-[#1B2A4A]'
+                      ? 'bg-[#16A34A] text-white'
                       : 'bg-transparent border border-[#E8EDF5] text-[#4A5568] hover:border-[#1B2A4A]'
                   }`}
                 >
@@ -144,7 +144,7 @@ export default function Courses() {
         <section className="section-padding">
           <div className="container-main">
             {isLoading ? (
-              <div className="text-center py-20"><Loader2 className="w-8 h-8 text-[#F5B800] animate-spin mx-auto" /></div>
+              <div className="text-center py-20"><Loader2 className="w-8 h-8 text-[#16A34A] animate-spin mx-auto" /></div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filtered.map((course) => (
@@ -168,7 +168,7 @@ export default function Courses() {
                       </span>
                     </div>
                     <div className="p-6">
-                      <Link to={`/courses/${course.slug}`} className="block font-body text-[18px] font-semibold text-[#1B2A4A] mb-2 group-hover:text-[#F5B800] transition-colors">
+                      <Link to={`/courses/${course.slug}`} className="block font-body text-[18px] font-semibold text-[#1B2A4A] mb-2 group-hover:text-[#16A34A] transition-colors">
                         {course.name}
                       </Link>
                       <div className="flex items-center gap-3 text-[12px] text-[#718096] mb-3">
@@ -182,7 +182,7 @@ export default function Courses() {
                         {course.shortDescription}
                       </p>
                       <div className="grid grid-cols-2 gap-2 mb-4">
-                        <div className="bg-[#FFF9E6] rounded-lg px-3 py-2">
+                        <div className="bg-[#EAF7EF] rounded-lg px-3 py-2">
                           <div className="text-[10px] uppercase tracking-wide text-[#718096]">Offline</div>
                           <div className="font-display text-[16px] font-semibold text-[#1B2A4A]">{course.offlineFee}</div>
                         </div>
@@ -200,7 +200,7 @@ export default function Courses() {
                         </Link>
                         <Link
                           to="/contact"
-                          className="flex-1 text-center bg-[#F5B800] text-[#1B2A4A] text-[12px] font-semibold px-4 py-2.5 rounded-full hover:bg-[#E0A800] transition-colors"
+                          className="flex-1 text-center bg-[#16A34A] text-white text-[12px] font-semibold px-4 py-2.5 rounded-full hover:bg-[#15803D] transition-colors"
                         >
                           Apply Now
                         </Link>
@@ -231,7 +231,7 @@ export default function Courses() {
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-xl bg-[#1B2A4A] flex items-center justify-center">
-                    <selectedCourse.icon className="w-7 h-7 text-[#F5B800]" />
+                    <selectedCourse.icon className="w-7 h-7 text-[#16A34A]" />
                   </div>
                   <div>
                     <h3 className="font-display text-[22px] font-semibold text-[#1B2A4A]">{selectedCourse.name}</h3>
@@ -247,7 +247,7 @@ export default function Courses() {
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-[#FFF9E6] rounded-lg p-4">
+                <div className="bg-[#EAF7EF] rounded-lg p-4">
                   <div className="label-meta mb-1">Fee</div>
                   <div className="font-display text-[22px] font-semibold text-[#1B2A4A]">{selectedCourse.fee}</div>
                 </div>

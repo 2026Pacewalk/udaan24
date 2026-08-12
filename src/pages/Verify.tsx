@@ -28,7 +28,7 @@ export default function Verify() {
       <main className="pt-[100px] pb-16">
         <div className="container-main max-w-[560px]">
           <div className="text-center mb-8">
-            <div className="w-12 h-12 rounded-xl bg-[#F5B800] flex items-center justify-center mx-auto mb-3"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
+            <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-3"><GraduationCap className="w-7 h-7 text-[#1B2A4A]" /></div>
             <h1 className="font-display text-[30px] font-semibold text-[#1B2A4A]">Verify Certificate / Marksheet</h1>
             <p className="text-[14px] text-[#718096] mt-1">Enter a certificate or marksheet number (or scan its QR code).</p>
           </div>
@@ -41,7 +41,7 @@ export default function Verify() {
             <button type="submit" className="bg-[#1B2A4A] text-white px-5 rounded-lg text-[14px] font-semibold">Verify</button>
           </form>
 
-          {loading && <div className="text-center py-8"><Loader2 className="w-7 h-7 text-[#F5B800] animate-spin mx-auto" /></div>}
+          {loading && <div className="text-center py-8"><Loader2 className="w-7 h-7 text-[#16A34A] animate-spin mx-auto" /></div>}
 
           {notFound && (
             <div className="bg-white border border-[#E8EDF5] rounded-2xl p-8 text-center">

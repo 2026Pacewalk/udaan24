@@ -64,7 +64,7 @@ export default function Gallery() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
                     activeCategory === cat
-                      ? 'bg-[#F5B800] text-[#1B2A4A]'
+                      ? 'bg-[#16A34A] text-white'
                       : 'bg-transparent border border-[#E8EDF5] text-[#4A5568] hover:border-[#1B2A4A]'
                   }`}
                 >
@@ -91,14 +91,14 @@ export default function Gallery() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(27,42,74,0.7)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <span className="text-[12px] text-[#F5B800] font-medium uppercase tracking-wider mb-1">
+                    <span className="text-[12px] text-[#16A34A] font-medium uppercase tracking-wider mb-1">
                       {item.category}
                     </span>
                     <h3 className="text-[14px] font-medium text-white">{item.title}</h3>
                   </div>
                   {item.type === 'video' && (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#F5B800] transition-colors duration-300">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#16A34A] transition-colors duration-300">
                         <Play className="w-5 h-5 text-white ml-0.5" />
                       </div>
                     </div>
@@ -129,7 +129,7 @@ export default function Gallery() {
               className="w-full max-h-[80vh] object-contain rounded-xl"
             />
             <div className="absolute bottom-4 left-4 right-4 text-center">
-              <span className="text-[12px] text-[#F5B800] font-medium uppercase tracking-wider">{selectedItem.category}</span>
+              <span className="text-[12px] text-[#16A34A] font-medium uppercase tracking-wider">{selectedItem.category}</span>
               <h3 className="text-[16px] font-medium text-white mt-1">{selectedItem.title}</h3>
             </div>
           </div>

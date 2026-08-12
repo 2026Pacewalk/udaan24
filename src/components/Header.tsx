@@ -67,7 +67,7 @@ export default function Header() {
                   to={link.href}
                   className={`px-4 py-2 text-[14px] font-medium transition-colors duration-200 flex items-center gap-1.5 ${
                     isActive(link.href)
-                      ? 'text-[#1B2A4A] border-b-2 border-[#F5B800]'
+                      ? 'text-[#1B2A4A] border-b-2 border-[#16A34A]'
                       : 'text-[#4A5568] hover:text-[#1B2A4A]'
                   }`}
                 >
@@ -83,7 +83,7 @@ export default function Header() {
                         <Link
                           key={i}
                           to="/courses"
-                          className="block p-3 rounded-lg hover:bg-[#FFF9E6] transition-colors duration-150"
+                          className="block p-3 rounded-lg hover:bg-[#EAF7EF] transition-colors duration-150"
                         >
                           <div className="text-[14px] font-medium text-[#1B2A4A]">{c}</div>
                           <div className="text-[11px] text-[#718096] mt-0.5">2-6 months</div>

@@ -54,7 +54,7 @@ export default function ImageUpload({ value, onChange, label = 'Student Image', 
         <div className="flex flex-col gap-1.5">
           {/* accept=image/* (no capture) lets mobile choose Camera OR Gallery; desktop opens file/camera */}
           <input ref={ref} type="file" accept="image/jpeg,image/png,image/webp,image/*" onChange={handle} className="hidden" />
-          <button type="button" onClick={() => ref.current?.click()} disabled={busy} className="flex items-center gap-1.5 text-[12px] font-medium text-[#1B2A4A] bg-[#FFF9E6] border border-[#F5B800]/40 px-3 py-1.5 rounded-lg disabled:opacity-60">
+          <button type="button" onClick={() => ref.current?.click()} disabled={busy} className="flex items-center gap-1.5 text-[12px] font-medium text-[#1B2A4A] bg-[#EAF7EF] border border-[#16A34A]/40 px-3 py-1.5 rounded-lg disabled:opacity-60">
             <Upload className="w-3.5 h-3.5" />{busy ? 'Processing…' : value ? 'Replace Photo' : 'Upload Photo'}
           </button>
           {value && <button type="button" onClick={() => onChange('')} className="flex items-center gap-1.5 text-[12px] font-medium text-red-500"><Trash2 className="w-3.5 h-3.5" />Remove</button>}

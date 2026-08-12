@@ -73,13 +73,13 @@ export default function Testimonials() {
         <div className="max-w-[800px] mx-auto relative">
           {/* Quote Icon */}
           <div className="absolute -top-4 left-0 md:-left-8">
-            <Quote className="w-12 h-12 text-[#F5B800] opacity-30" />
+            <Quote className="w-12 h-12 text-[#16A34A] opacity-30" />
           </div>
 
           <div className="bg-white border border-[#E8EDF5] rounded-2xl p-8 md:p-12 relative overflow-hidden">
             <div className="flex items-center gap-1 mb-6">
               {Array.from({ length: testimonials[current].rating }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 text-[#F5B800] fill-[#F5B800]" />
+                <Star key={i} className="w-5 h-5 text-[#16A34A] fill-[#16A34A]" />
               ))}
             </div>
 
@@ -91,7 +91,7 @@ export default function Testimonials() {
               <img
                 src={testimonials[current].photo}
                 alt={testimonials[current].name}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[#F5B800]"
+                className="w-14 h-14 rounded-full object-cover border-2 border-[#16A34A]"
               />
               <div>
                 <h4 className="font-body text-[16px] font-semibold text-[#1B2A4A]">
@@ -117,7 +117,7 @@ export default function Testimonials() {
                     key={i}
                     onClick={() => setCurrent(i)}
                     className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                      i === current ? 'w-6 bg-[#F5B800]' : 'bg-[#E8EDF5]'
+                      i === current ? 'w-6 bg-[#16A34A]' : 'bg-[#E8EDF5]'
                     }`}
                   />
                 ))}

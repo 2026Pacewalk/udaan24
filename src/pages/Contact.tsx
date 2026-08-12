@@ -139,14 +139,14 @@ export default function Contact() {
                   <div className="bg-[#1B2A4A] rounded-2xl p-6 sm:p-8 text-white">
                     <h3 className="font-display text-[20px] sm:text-[22px] font-semibold mb-6">Contact Information</h3>
                     <div className="space-y-5">
-                      <div className="flex items-start gap-4"><MapPin className="w-5 h-5 text-[#F5B800] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Kotkapura Centre</p><p className="text-[13px] text-white/60">Batian Wala Chownk, Above Punjab &amp; Sind Bank<br />Kotkapura, Punjab 151204</p></div></div>
-                      <div className="flex items-start gap-4"><Phone className="w-5 h-5 text-[#F5B800] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Phone</p><p className="text-[13px] text-white/60">+91 97808 43440</p></div></div>
-                      <div className="flex items-start gap-4"><Mail className="w-5 h-5 text-[#F5B800] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Email</p><p className="text-[13px] text-white/60">info@udaan24.com<br />support@udaan24.com</p></div></div>
-                      <div className="flex items-start gap-4"><Clock className="w-5 h-5 text-[#F5B800] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Office Hours</p><p className="text-[13px] text-white/60">Mon - Sat: 9:00 AM - 6:00 PM<br />Sunday: Closed</p></div></div>
+                      <div className="flex items-start gap-4"><MapPin className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Kotkapura Centre</p><p className="text-[13px] text-white/60">Batian Wala Chownk, Above Punjab &amp; Sind Bank<br />Kotkapura, Punjab 151204</p></div></div>
+                      <div className="flex items-start gap-4"><Phone className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Phone</p><p className="text-[13px] text-white/60">+91 97808 43440</p></div></div>
+                      <div className="flex items-start gap-4"><Mail className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Email</p><p className="text-[13px] text-white/60">info@udaan24.com<br />support@udaan24.com</p></div></div>
+                      <div className="flex items-start gap-4"><Clock className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Office Hours</p><p className="text-[13px] text-white/60">Mon - Sat: 9:00 AM - 6:00 PM<br />Sunday: Closed</p></div></div>
                     </div>
                   </div>
 
-                  <div className="bg-[#FFF9E6] rounded-2xl p-6 border border-[#F5B800]/20">
+                  <div className="bg-[#EAF7EF] rounded-2xl p-6 border border-[#16A34A]/20">
                     <h4 className="font-body text-[16px] font-semibold text-[#1B2A4A] mb-2">Need AI Course Guidance?</h4>
                     <p className="text-[13px] text-[#4A5568] mb-4">Chat with us on WhatsApp for AI course guidance and admission queries.</p>
                     <a href="https://wa.me/919780843440" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white py-3 rounded-full font-medium text-[14px] hover:bg-[#1da851] transition-colors"><MessageCircle className="w-4 h-4" />Chat on WhatsApp</a>
@@ -179,16 +179,16 @@ export default function Contact() {
                 {filteredCentres.map((c: any) => (
                   <div key={c.id} className="bg-white border border-[#E8EDF5] rounded-2xl p-5 hover:shadow-[0_8px_32px_rgba(27,42,74,0.08)] transition-all">
                     <div className="flex items-start justify-between mb-3">
-                      <div className="w-11 h-11 rounded-xl bg-[#FFF9E6] flex items-center justify-center"><Building2 className="w-5 h-5 text-[#F5B800]" /></div>
+                      <div className="w-11 h-11 rounded-xl bg-[#EAF7EF] flex items-center justify-center"><Building2 className="w-5 h-5 text-[#16A34A]" /></div>
                       <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-green-50 text-green-700">Active</span>
                     </div>
                     <h3 className="font-body text-[16px] font-semibold text-[#1B2A4A]">{c.name}</h3>
                     <p className="text-[12px] font-mono text-[#718096] mb-3">{c.centerCode}</p>
                     <div className="space-y-1.5 text-[13px] text-[#4A5568]">
-                      {(c.address || c.city) && <p className="flex items-start gap-2"><MapPin className="w-3.5 h-3.5 text-[#F5B800] mt-0.5 flex-shrink-0" /><span>{[c.address, c.city, c.state].filter(Boolean).join(', ')}</span></p>}
-                      {c.contactPerson && <p className="flex items-center gap-2"><User className="w-3.5 h-3.5 text-[#F5B800] flex-shrink-0" />{c.contactPerson}</p>}
-                      {c.phone && <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#F5B800] flex-shrink-0" /><a href={`tel:${c.phone}`} className="hover:text-[#1B2A4A]">{c.phone}</a></p>}
-                      {c.email && <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#F5B800] flex-shrink-0" /><a href={`mailto:${c.email}`} className="hover:text-[#1B2A4A] break-all">{c.email}</a></p>}
+                      {(c.address || c.city) && <p className="flex items-start gap-2"><MapPin className="w-3.5 h-3.5 text-[#16A34A] mt-0.5 flex-shrink-0" /><span>{[c.address, c.city, c.state].filter(Boolean).join(', ')}</span></p>}
+                      {c.contactPerson && <p className="flex items-center gap-2"><User className="w-3.5 h-3.5 text-[#16A34A] flex-shrink-0" />{c.contactPerson}</p>}
+                      {c.phone && <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#16A34A] flex-shrink-0" /><a href={`tel:${c.phone}`} className="hover:text-[#1B2A4A]">{c.phone}</a></p>}
+                      {c.email && <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#16A34A] flex-shrink-0" /><a href={`mailto:${c.email}`} className="hover:text-[#1B2A4A] break-all">{c.email}</a></p>}
                     </div>
                     <a href={mapHref(c)} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-medium text-[#0071E3]"><ExternalLink className="w-3.5 h-3.5" />View on Google Maps</a>
                   </div>

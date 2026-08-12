@@ -56,8 +56,8 @@ export default function WhyChooseUs() {
               key={feature.title}
               className={`card-standard group ${feature.large ? 'md:col-span-2 lg:col-span-2' : ''}`}
             >
-              <div className="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4 group-hover:bg-[#F5B800] transition-colors duration-300">
-                <feature.icon className="w-6 h-6 text-[#F5B800] group-hover:text-[#1B2A4A] transition-colors duration-300" />
+              <div className="w-12 h-12 rounded-lg bg-[#EAF7EF] flex items-center justify-center mb-4 group-hover:bg-[#16A34A] transition-colors duration-300">
+                <feature.icon className="w-6 h-6 text-[#16A34A] group-hover:text-[#1B2A4A] transition-colors duration-300" />
               </div>
               <h3 className="font-body text-[20px] font-semibold text-[#1B2A4A] mb-2">
                 {feature.title}
