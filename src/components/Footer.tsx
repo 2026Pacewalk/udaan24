@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { GraduationCap, Facebook, Instagram, Linkedin, Youtube, Twitter, ArrowUp, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Youtube, Twitter, ArrowUp, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import { trpc } from '@/providers/trpc';
 
 const quickLinks = [
@@ -32,10 +32,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-10 h-10 rounded-lg bg-[#F5B800] flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-[#1B2A4A]" />
-              </div>
-              <span className="font-display text-[20px] font-semibold">Udaan24</span>
+              <img src="/logo-icon.png" alt="Udaan24 AI Institute" className="w-11 h-11 object-contain" />
+              <span className="font-display text-[21px] font-extrabold tracking-tight">UDAAN<span className="text-[#4ade80]">24</span></span>
             </Link>
             <p className="text-[14px] text-white/60 leading-relaxed mb-6">
               Leading AI Coaching Institute in Kotkapura, Punjab. Master Artificial Intelligence, Machine Learning, and Data Science with hands-on training and industry-recognized certification.

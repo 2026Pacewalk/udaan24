@@ -47,12 +47,10 @@ export default function Header() {
         <div className="container-main flex items-center justify-between h-[72px]">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-lg bg-[#F5B800] flex items-center justify-center">
-              <GraduationCap className="w-6 h-6 text-[#1B2A4A]" />
-            </div>
+            <img src="/logo-icon.png" alt="Udaan24 AI Institute" className="w-11 h-11 object-contain" />
             <div className="flex flex-col">
-              <span className="font-display text-[20px] font-semibold leading-none text-[#1B2A4A]">Udaan24</span>
-              <span className="font-mono-accent text-[9px] text-[#718096] tracking-widest uppercase">AI Coaching</span>
+              <span className="font-display text-[21px] font-extrabold leading-none tracking-tight text-[#1B2A4A]">UDAAN<span className="text-[#1F9E52]">24</span></span>
+              <span className="font-mono-accent text-[9px] text-[#718096] tracking-[0.18em] uppercase mt-0.5">AI Institute</span>
             </div>
           </Link>
 
