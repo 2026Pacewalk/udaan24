@@ -44,7 +44,7 @@ export const BusinessBlock = () => (
     <p className="font-semibold text-[#1B2A4A] mb-1">Udaan24 AI Institute</p>
     <p>Run By <b>Udaan24 Educational Society</b>, Kotkapura.</p>
     <p>Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204, India</p>
-    <p>Phone / WhatsApp: +91 97808 43440 &nbsp;·&nbsp; Email: info@udaan24.com</p>
+    <p>Phone / WhatsApp: +91 97803 16116, +91 97803 16119 &nbsp;·&nbsp; Email: info@udaan24.com</p>
     <p>Website: https://udaan24.com</p>
   </div>
 );

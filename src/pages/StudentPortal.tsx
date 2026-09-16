@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { trpc } from '@/providers/trpc';
+import AuthLayout, { authInput, authLabel, authButton } from '@/components/AuthLayout';
 import {
   GraduationCap, BookOpen, CreditCard, Award, LogOut, Bell, User,
   CheckCircle, AlertCircle, Download, Percent, Loader2, Building2, FileText,
@@ -21,40 +22,25 @@ function StudentLogin({ onLogin }: { onLogin: (id: number) => void }) {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA] p-4">
-      <div className="w-full max-w-sm bg-white rounded-2xl border border-[#E8EDF5] p-8">
-        <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-3">
-            <GraduationCap className="w-7 h-7 text-[#1B2A4A]" />
-          </div>
-          <h1 className="font-display text-[20px] font-semibold text-[#1B2A4A]">Student Portal</h1>
-          <p className="text-[13px] text-[#718096]">Login with your Student ID or username</p>
+    <AuthLayout badge="Student Portal" title="Student Login" subtitle="Login with your Student ID or username">
+      <form
+        onSubmit={(e) => { e.preventDefault(); setError(''); login.mutate({ rollNumber: rollNumber.trim(), password }); }}
+        className="space-y-4"
+      >
+        <div>
+          <label className={authLabel}>Student ID or Username</label>
+          <input value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} required className={authInput} placeholder="UAN24XXXX or username" />
         </div>
-        <form
-          onSubmit={(e) => { e.preventDefault(); setError(''); login.mutate({ rollNumber: rollNumber.trim(), password }); }}
-          className="space-y-3"
-        >
-          <div>
-            <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Student ID or Username</label>
-            <input value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} required
-              className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]"
-              placeholder="UAN24XXXX or username" />
-          </div>
-          <div>
-            <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
-              className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]"
-              placeholder="••••••••" />
-          </div>
-          {error && <p className="text-[12px] text-red-500">{error}</p>}
-          <button type="submit" disabled={login.isPending}
-            className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 hover:bg-[#15803D] disabled:opacity-60">
-            {login.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign in'}
-          </button>
-        </form>
-        <Link to="/" className="block text-center text-[12px] text-[#718096] mt-4 hover:text-[#1B2A4A]">← Back to website</Link>
-      </div>
-    </div>
+        <div>
+          <label className={authLabel}>Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className={authInput} placeholder="••••••••" />
+        </div>
+        {error && <p className="text-[12px] text-red-300">{error}</p>}
+        <button type="submit" disabled={login.isPending} className={authButton}>
+          {login.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign in'}
+        </button>
+      </form>
+    </AuthLayout>
   );
 }
 

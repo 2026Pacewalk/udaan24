@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import HeroMarble from '@/sections/HeroMarble';
+import HeroSlider from '@/sections/HeroSlider';
 import AnnouncementTicker from '@/sections/AnnouncementTicker';
 import StatsCounter from '@/sections/StatsCounter';
 import CoursesSection from '@/sections/CoursesSection';
@@ -17,7 +17,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#FEFDFB]">
       <Header />
       <main>
-        <HeroMarble />
+        <HeroSlider />
         <AnnouncementTicker />
         <StatsCounter />
         <CoursesSection />

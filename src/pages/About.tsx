@@ -2,13 +2,29 @@ import { Link } from 'react-router';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Award, Users, BookOpen, Monitor, Target, Eye, Quote, CheckCircle } from 'lucide-react';
+import { Award, Users, BookOpen, Monitor, Target, Eye, Quote, CheckCircle, Sparkles, GraduationCap, Briefcase, Building2, Home } from 'lucide-react';
 
 const facilities = [
   { icon: Monitor, title: 'Computer Labs', desc: 'State-of-the-art labs with latest hardware and software' },
   { icon: BookOpen, title: 'Digital Library', desc: 'Access to 5000+ e-books, video lectures and resources' },
   { icon: Users, title: 'Placement Cell', desc: 'Dedicated team for job placements and career guidance' },
   { icon: Award, title: 'Online Portal', desc: '24/7 access to study materials, exams and certificates' },
+];
+
+const audiences = [
+  { icon: GraduationCap, title: 'Students & Freshers', desc: 'Graduate job-ready with real AI skills that employers are actively hiring for.' },
+  { icon: Briefcase, title: 'Working Professionals', desc: 'Use AI to work faster, automate the repetitive, and stay ahead in your role.' },
+  { icon: Building2, title: 'Business Owners', desc: 'Spot where AI can cut costs, reach more customers, and grow your business.' },
+  { icon: Home, title: 'Homemakers & Restarters', desc: 'Learn flexible, in-demand skills to earn from home or restart your career.' },
+];
+
+const capabilities = [
+  'Understand what today’s AI truly can — and cannot — do',
+  'Use everyday AI tools with confidence, no coding required',
+  'Apply AI to real problems in your studies, job or business',
+  'Read the change in the job market and turn it to your advantage',
+  'Build a sustainable, practical AI plan for your career',
+  'Tell real opportunity apart from the hype',
 ];
 
 export default function About() {
@@ -82,6 +98,51 @@ export default function About() {
                 <p className="text-[14px] text-[#4A5568] leading-relaxed">
                   To become North India's leading AI coaching network with 25+ centres by 2030, creating 10,000 AI-skilled professionals from Punjab who contribute to India's AI revolution and global competitiveness.
                 </p>
+              </div>
+            </div>
+
+            {/* AI for Everyone */}
+            <div className="mb-20">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <span className="label-meta mb-3 block flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#16A34A]" />AI for Everyone</span>
+                  <h2 className="font-display text-[32px] font-semibold text-[#1B2A4A] mb-6 leading-tight">
+                    AI Is for Everyone — Not Just Engineers
+                  </h2>
+                  <p className="text-[15px] text-[#4A5568] leading-relaxed mb-4">
+                    Artificial Intelligence is no longer a subject reserved for engineers and researchers. It has quietly become part of everyday work — in how businesses find customers, how offices handle data, how creators make content, and how decisions get made. At Udaan24 AI Institute, we believe every learner deserves to understand this shift, whatever their background and however little code they have written.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-relaxed mb-4">
+                    Our programmes are built so that a first-year student, a shop owner, an accountant, or someone returning to work can all learn to use AI with confidence. You will see what today's AI genuinely can do — and, just as importantly, what it cannot — so you can tell real opportunity apart from the hype and apply the right tools to real problems around you.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-relaxed">
+                    More than a set of tools, AI is changing which skills the job market rewards. We help you navigate that change: build practical, AI-powered skills, understand how it affects your field, and turn it into a real advantage for your career or your business.
+                  </p>
+                </div>
+                <div className="bg-[#EAF7EF] border border-[#16A34A]/20 rounded-2xl p-8">
+                  <h3 className="font-body text-[16px] font-semibold text-[#1B2A4A] mb-5">By the end, you will be able to:</h3>
+                  <ul className="space-y-3">
+                    {capabilities.map((c) => (
+                      <li key={c} className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-[#22C55E] flex-shrink-0 mt-0.5" />
+                        <span className="text-[14px] text-[#1B2A4A] leading-relaxed">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Who it's for */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+                {audiences.map((a) => (
+                  <div key={a.title} className="card-standard">
+                    <div className="w-12 h-12 rounded-xl bg-[#EAF7EF] flex items-center justify-center mb-4">
+                      <a.icon className="w-6 h-6 text-[#16A34A]" />
+                    </div>
+                    <h3 className="font-body text-[16px] font-semibold text-[#1B2A4A] mb-2">{a.title}</h3>
+                    <p className="text-[13px] text-[#4A5568] leading-relaxed">{a.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
 

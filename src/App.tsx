@@ -9,6 +9,7 @@ import Admission from './pages/Admission'
 import Certificate from './pages/Certificate'
 import Marksheet from './pages/Marksheet'
 import Verify from './pages/Verify'
+import ResultVerify from './pages/ResultVerify'
 import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
 import Blog from './pages/Blog'
@@ -70,6 +71,9 @@ export default function App() {
         <Route path="/marksheet/:id" element={<Marksheet />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/verify/:number" element={<Verify />} />
+        <Route path="/result" element={<ResultVerify />} />
+        <Route path="/results" element={<ResultVerify />} />
+        <Route path="/verify-result" element={<ResultVerify />} />
 
         {/* Admission 3-step form (logged-in student or shared centre link) */}
         <Route path="/admission" element={<Admission />} />

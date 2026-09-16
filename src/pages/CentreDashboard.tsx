@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { trpc } from '@/providers/trpc';
 import ImageUpload from '@/components/ImageUpload';
+import AuthLayout, { authInput, authLabel, authButton } from '@/components/AuthLayout';
 import {
   Building2, Users, LogOut, Loader2, GraduationCap, CheckCircle, Award, CreditCard,
   BookOpen, FileText, Download, ClipboardList, Plus, X, Save, LayoutDashboard, Menu,
@@ -18,30 +19,22 @@ function CentreLogin({ onLogin }: { onLogin: (id: number) => void }) {
   const login = trpc.centers.login.useMutation({ onSuccess: (c) => onLogin(c.id), onError: (e) => setError(e.message) });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F5F6FA] p-4">
-      <div className="w-full max-w-sm bg-white rounded-2xl border border-[#E8EDF5] p-8">
-        <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-xl bg-[#16A34A] flex items-center justify-center mx-auto mb-3"><Building2 className="w-7 h-7 text-[#1B2A4A]" /></div>
-          <h1 className="font-display text-[20px] font-semibold text-[#1B2A4A]">Study Centre Login</h1>
-          <p className="text-[13px] text-[#718096]">Login with your centre code</p>
+    <AuthLayout badge="Study Centre" title="Study Centre Login" subtitle="Login with your centre code">
+      <form onSubmit={(e) => { e.preventDefault(); setError(''); login.mutate({ code, password }); }} className="space-y-4">
+        <div>
+          <label className={authLabel}>Centre Code</label>
+          <input value={code} onChange={(e) => setCode(e.target.value)} required className={authInput} placeholder="UAN24-KKP" />
         </div>
-        <form onSubmit={(e) => { e.preventDefault(); setError(''); login.mutate({ code, password }); }} className="space-y-3">
-          <div>
-            <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Centre Code</label>
-            <input value={code} onChange={(e) => setCode(e.target.value)} required className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" placeholder="UAN24-KKP" />
-          </div>
-          <div>
-            <label className="text-[13px] font-medium text-[#1B2A4A] mb-1 block">Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="w-full h-10 px-3 bg-[#F5F6FA] border border-[#E8EDF5] rounded-lg text-[13px] outline-none focus:border-[#16A34A]" placeholder="••••••••" />
-          </div>
-          {error && <p className="text-[12px] text-red-500">{error}</p>}
-          <button type="submit" disabled={login.isPending} className="w-full h-10 bg-[#16A34A] text-white rounded-lg text-[13px] font-semibold flex items-center justify-center gap-2 hover:bg-[#15803D] disabled:opacity-60">
-            {login.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign in'}
-          </button>
-        </form>
-        <Link to="/" className="block text-center text-[12px] text-[#718096] mt-4 hover:text-[#1B2A4A]">← Back to website</Link>
-      </div>
-    </div>
+        <div>
+          <label className={authLabel}>Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className={authInput} placeholder="••••••••" />
+        </div>
+        {error && <p className="text-[12px] text-red-300">{error}</p>}
+        <button type="submit" disabled={login.isPending} className={authButton}>
+          {login.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign in'}
+        </button>
+      </form>
+    </AuthLayout>
   );
 }
 

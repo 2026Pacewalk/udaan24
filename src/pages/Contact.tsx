@@ -89,7 +89,7 @@ export default function Contact() {
                         </div>
                         <div>
                           <label className="font-body text-[14px] font-medium text-[#1B2A4A] mb-1.5 block">Phone Number *</label>
-                          <input type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="input-standard w-full" placeholder="+91 97808 43440" />
+                          <input type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="input-standard w-full" placeholder="+91 97803 16116" />
                         </div>
                       </div>
 
@@ -140,7 +140,7 @@ export default function Contact() {
                     <h3 className="font-display text-[20px] sm:text-[22px] font-semibold mb-6">Contact Information</h3>
                     <div className="space-y-5">
                       <div className="flex items-start gap-4"><MapPin className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Kotkapura Centre</p><p className="text-[13px] text-white/60">Batian Wala Chownk, Above Punjab &amp; Sind Bank<br />Kotkapura, Punjab 151204</p></div></div>
-                      <div className="flex items-start gap-4"><Phone className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Phone</p><p className="text-[13px] text-white/60">+91 97808 43440</p></div></div>
+                      <div className="flex items-start gap-4"><Phone className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Phone</p><p className="text-[13px] text-white/60">+91 97803 16116, +91 97803 16119</p></div></div>
                       <div className="flex items-start gap-4"><Mail className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Email</p><p className="text-[13px] text-white/60">info@udaan24.com<br />support@udaan24.com</p></div></div>
                       <div className="flex items-start gap-4"><Clock className="w-5 h-5 text-[#16A34A] mt-0.5 flex-shrink-0" /><div><p className="text-[14px] font-medium mb-0.5">Office Hours</p><p className="text-[13px] text-white/60">Mon - Sat: 9:00 AM - 6:00 PM<br />Sunday: Closed</p></div></div>
                     </div>
@@ -149,7 +149,7 @@ export default function Contact() {
                   <div className="bg-[#EAF7EF] rounded-2xl p-6 border border-[#16A34A]/20">
                     <h4 className="font-body text-[16px] font-semibold text-[#1B2A4A] mb-2">Need AI Course Guidance?</h4>
                     <p className="text-[13px] text-[#4A5568] mb-4">Chat with us on WhatsApp for AI course guidance and admission queries.</p>
-                    <a href="https://wa.me/919780843440" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white py-3 rounded-full font-medium text-[14px] hover:bg-[#1da851] transition-colors"><MessageCircle className="w-4 h-4" />Chat on WhatsApp</a>
+                    <a href="https://wa.me/919780316116" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white py-3 rounded-full font-medium text-[14px] hover:bg-[#1da851] transition-colors"><MessageCircle className="w-4 h-4" />Chat on WhatsApp</a>
                   </div>
                 </div>
               </div>

@@ -22,7 +22,7 @@ export default function ShippingPolicy() {
       <P>After payment, you will receive your Student ID and login details. If you do not receive access within 24 hours of a successful payment, please contact us so we can activate it immediately.</P>
 
       <H2>Contact Us</H2>
-      <P>For any questions about course access or delivery, contact Udaan24 AI Institute at info@udaan24.com or +91 97808 43440, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
+      <P>For any questions about course access or delivery, contact Udaan24 AI Institute at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
     </LegalPage>
   );
 }

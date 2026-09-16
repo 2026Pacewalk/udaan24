@@ -237,7 +237,7 @@ export default function Franchise() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label className="font-body text-[14px] font-medium text-[#1B2A4A] mb-1.5 block">Phone *</label>
-                          <input type="tel" value={form.phone} onChange={set('phone')} className="input-standard w-full" placeholder="+91 97808 43440" />
+                          <input type="tel" value={form.phone} onChange={set('phone')} className="input-standard w-full" placeholder="+91 97803 16116" />
                         </div>
                         <div>
                           <label className="font-body text-[14px] font-medium text-[#1B2A4A] mb-1.5 block">Education</label>

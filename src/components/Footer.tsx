@@ -7,6 +7,7 @@ const quickLinks = [
   { label: 'AI Courses', href: '/courses' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Check Result', href: '/result' },
   { label: 'Student Portal', href: '/student/login' },
   { label: 'Study Centre', href: '/franchise' },
 ];
@@ -105,7 +106,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#16A34A] flex-shrink-0" />
-                <span className="text-[14px] text-white/50">+91 97808 43440</span>
+                <span className="text-[14px] text-white/50">+91 97803 16116, +91 97803 16119</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#16A34A] flex-shrink-0" />
@@ -113,7 +114,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <MessageCircle className="w-4 h-4 text-[#16A34A] flex-shrink-0" />
-                <span className="text-[14px] text-white/50">WhatsApp: +91 97808 43440</span>
+                <span className="text-[14px] text-white/50">WhatsApp: +91 97803 16116</span>
               </li>
             </ul>
           </div>

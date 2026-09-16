@@ -1,13 +1,23 @@
-import { Building2 } from 'lucide-react';
-
 const recruiters = [
-  'TCS', 'Infosys', 'Wipro', 'HCL', 'Cognizant', 'Tech Mahindra',
-  'Accenture', 'IBM', 'Capgemini', 'Oracle', 'Microsoft', 'Google',
+  { name: 'TCS', slug: 'tcs' },
+  { name: 'Infosys', slug: 'infosys' },
+  { name: 'Wipro', slug: 'wipro' },
+  { name: 'HCL', slug: 'hcl' },
+  { name: 'Cognizant', slug: 'cognizant' },
+  { name: 'Tech Mahindra', slug: 'techmahindra' },
+  { name: 'Accenture', slug: 'accenture' },
+  { name: 'IBM', slug: 'ibm' },
+  { name: 'Capgemini', slug: 'capgemini' },
+  { name: 'Oracle', slug: 'oracle' },
+  { name: 'Microsoft', slug: 'microsoft' },
+  { name: 'Google', slug: 'google' },
 ];
 
 export default function PlacementLogos() {
+  // Duplicated once so the CSS marquee (translateX -50%) loops seamlessly.
+  const track = [...recruiters, ...recruiters];
   return (
-    <section className="py-16 bg-white border-y border-[#E8EDF5]">
+    <section className="py-16 bg-white border-y border-[#E8EDF5] overflow-hidden">
       <div className="container-main">
         <div className="text-center mb-10">
           <span className="label-meta mb-3 block">AI Career Partners</span>
@@ -15,15 +25,27 @@ export default function PlacementLogos() {
             Trusted by AI Companies
           </h3>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-          {recruiters.map((company) => (
-            <div
-              key={company}
-              className="flex items-center gap-2 px-6 py-3 bg-[#FEFDFB] border border-[#E8EDF5] rounded-lg hover:border-[#16A34A] hover:shadow-sm transition-all duration-200"
-            >
-              <Building2 className="w-5 h-5 text-[#718096]" />
-              <span className="font-body text-[14px] font-medium text-[#4A5568]">{company}</span>
-            </div>
+      </div>
+
+      <div
+        className="relative"
+        style={{
+          maskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+          WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+        }}
+      >
+        <div
+          className="marquee-track items-center gap-16 md:gap-20 w-max hover:[animation-play-state:paused]"
+          style={{ animationDuration: '42s' }}
+        >
+          {track.map((c, i) => (
+            <img
+              key={`${c.slug}-${i}`}
+              src={`/logos/${c.slug}.png`}
+              alt={`${c.name} logo`}
+              loading="lazy"
+              className="h-10 md:h-12 w-auto object-contain shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200"
+            />
           ))}
         </div>
       </div>

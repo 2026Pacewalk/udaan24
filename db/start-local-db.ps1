@@ -7,7 +7,8 @@
 
 $mysqld  = "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqld.exe"
 $basedir = "C:\Program Files\MySQL\MySQL Server 8.4"
-$datadir = "F:\Udaan24 Website\app\.localdb\data"
+# Resolve the data dir relative to this script so it works wherever the project lives.
+$datadir = (Resolve-Path (Join-Path $PSScriptRoot "..\.localdb\data")).Path
 
 Write-Host "Starting Udaan24 MySQL on port 3307 (root, no password)..."
 & $mysqld --basedir="$basedir" --datadir="$datadir" --port=3307 --mysqlx=0 --console

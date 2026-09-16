@@ -51,7 +51,7 @@ export default function FranchiseSection() {
                 className="flex items-center justify-center gap-2 text-white/70 hover:text-[#16A34A] transition-colors text-[14px] font-medium border border-white/20 rounded-full px-8 py-3.5"
               >
                 <Phone className="w-4 h-4" />
-                Call: +91 97808 43440
+                Call: +91 97803 16116, +91 97803 16119
               </a>
             </div>
           </div>

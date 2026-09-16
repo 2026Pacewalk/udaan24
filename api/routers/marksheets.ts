@@ -65,6 +65,50 @@ export const marksheetRouter = createRouter({
     };
   }),
 
+  // Public result verification: student enters their Name + Registration Number
+  // (roll number). BOTH must match for the result to be shown (privacy).
+  verifyResult: publicQuery
+    .input(z.object({ name: z.string().min(1), registrationNumber: z.string().min(1) }))
+    .query(async ({ input }) => {
+      const db = getDb();
+      const reg = input.registrationNumber.trim();
+      const [student] = await db.select().from(students).where(eq(students.rollNumber, reg));
+      // Require both fields to match — never reveal a result from the reg number alone.
+      if (!student || (student.name || "").trim().toLowerCase() !== input.name.trim().toLowerCase()) {
+        return { found: false as const };
+      }
+      const [ms] = await db.select().from(marksheets)
+        .where(eq(marksheets.studentId, student.id)).orderBy(desc(marksheets.createdAt));
+      const [centre] = student.centerId ? await db.select().from(centers).where(eq(centers.id, student.centerId)) : [null];
+      const instituteName = centre?.name || "Udaan24 AI Institute";
+      const instituteCity = centre?.city || "Kotkapura";
+
+      // Resolve course — prefer the marksheet's course, fall back to the student's
+      // current course (handles legacy marksheets whose course was later removed).
+      let course: any = null;
+      for (const cid of [ms?.courseId, student.courseId].filter((x): x is number => !!x)) {
+        const [c] = await db.select().from(courses).where(eq(courses.id, cid));
+        if (c) { course = c; break; }
+      }
+
+      if (!ms || ms.status !== "issued") {
+        return {
+          found: true as const, resultPublished: false as const,
+          studentName: student.name, fatherName: student.fatherName, dob: student.dob,
+          courseName: course?.name || null, instituteName, instituteCity,
+        };
+      }
+      return {
+        found: true as const, resultPublished: true as const,
+        studentName: student.name, fatherName: student.fatherName, dob: student.dob,
+        registrationNumber: student.rollNumber, courseName: course?.name || null,
+        obtainedMarks: ms.obtainedMarks, totalMarks: ms.totalMarks,
+        percentage: ms.percentage, grade: ms.grade, resultStatus: ms.resultStatus,
+        marksheetNumber: ms.marksheetNumber, issueDate: ms.issueDate,
+        instituteName, instituteCity,
+      };
+    }),
+
   // Generate a marksheet from subject-wise marks (dynamic totals/grade/result).
   generate: adminQuery
     .input(z.object({
