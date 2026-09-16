@@ -1,0 +1,30 @@
+name: Fix Centres (one-time)
+
+# Manually triggered. Runs db/fix-centres.ts on the VPS to keep only the real
+# Kotkapura centre (correct address + phone) and remove the demo centres.
+# Run AFTER a normal deploy so the latest db/fix-centres.ts is present on the server.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-vps
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run fix-centres on VPS
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
+            -o StrictHostKeyChecking=accept-new \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" 'bash -se' <<'REMOTE'
+            set -euo pipefail
+            export PATH="$PATH:/usr/bin:/usr/local/bin"
+            cd /var/www/udaan24
+            npx --yes tsx db/fix-centres.ts
+          REMOTE
