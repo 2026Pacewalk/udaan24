@@ -44,7 +44,7 @@ async function seed() {
 
   console.log("Seeding centers...");
   const centerData = [
-    { centerCode: "UAN24-KKP", name: "Udaan24 - Kotkapura Main", ownerName: "Rajinder Singh", ownerPhone: "+91 97808 43440", email: "info@udaan24.com", address: "Near Bus Stand, Kotkapura", city: "Kotkapura", state: "Punjab", pincode: "151204", status: "active" as const },
+    { centerCode: "UAN24-KKP", name: "Udaan24 - Kotkapura Main", ownerName: "Rajinder Singh", ownerPhone: "+91 97808 43440", email: "info@udaan24.com", address: "Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab & Sind Bank", city: "Kotkapura", state: "Punjab", pincode: "151204", status: "active" as const },
     { centerCode: "UAN24-FDR", name: "Udaan24 - Faridkot", ownerName: "Harpreet Kaur", ownerPhone: "+91 98765 12340", email: "faridkot@udaan24.com", address: "Main Road, Faridkot", city: "Faridkot", state: "Punjab", pincode: "151203", status: "active" as const },
     { centerCode: "UAN24-BTI", name: "Udaan24 - Bathinda", ownerName: "Manjit Singh", ownerPhone: "+91 98765 12341", email: "bathinda@udaan24.com", address: "Bibi Wala Road, Bathinda", city: "Bathinda", state: "Punjab", pincode: "151001", status: "active" as const },
     { centerCode: "UAN24-LDH", name: "Udaan24 - Ludhiana", ownerName: "Simran Kaur", ownerPhone: "+91 98765 12342", email: "ludhiana@udaan24.com", address: "Ferozepur Road, Ludhiana", city: "Ludhiana", state: "Punjab", pincode: "141001", status: "active" as const },
@@ -117,7 +117,7 @@ async function seed() {
     { key: "contact_phone", value: "+91 97808 43440", group: "contact" },
     { key: "contact_whatsapp", value: "+91 97808 43440", group: "contact" },
     { key: "contact_email", value: "info@udaan24.com", group: "contact" },
-    { key: "contact_address", value: "Near Bus Stand, Kotkapura, Faridkot, Punjab 151204", group: "contact" },
+    { key: "contact_address", value: "Udaan24 AI Institute, Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab & Sind Bank, Kotkapura", group: "contact" },
     { key: "facebook", value: "https://facebook.com/udaan24", group: "social" },
     { key: "instagram", value: "https://instagram.com/udaan24", group: "social" },
     { key: "referral_enabled", value: "true", group: "referral" },

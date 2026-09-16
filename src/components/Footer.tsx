@@ -100,8 +100,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#16A34A] mt-1 flex-shrink-0" />
                 <span className="text-[14px] text-white/50">
-                  Batian Wala Chownk, Above Punjab &amp; Sind Bank<br />
-                  Kotkapura, Punjab 151204
+                  Batian wala Chownk, Jaitu Road, opposite Car Parking,<br />
+                  Above Punjab &amp; Sind Bank, Kotkapura
                 </span>
               </li>
               <li className="flex items-center gap-3">

@@ -39,7 +39,7 @@ export default function RefundPolicy() {
       </UL>
 
       <H2>Contact for Refunds</H2>
-      <P>For any cancellation or refund request, contact Udaan24 AI Institute at <b>info@udaan24.com</b> or <b>+91 97803 16116, +91 97803 16119</b>, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204. We aim to respond to every request within 3 business days.</P>
+      <P>For any cancellation or refund request, contact Udaan24 AI Institute at <b>info@udaan24.com</b> or <b>+91 97803 16116, +91 97803 16119</b>, Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab &amp; Sind Bank, Kotkapura. We aim to respond to every request within 3 business days.</P>
     </LegalPage>
   );
 }

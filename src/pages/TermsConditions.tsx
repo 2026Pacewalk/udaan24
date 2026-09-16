@@ -51,7 +51,7 @@ export default function TermsConditions() {
       <P>We may revise these Terms from time to time. Continued use of our website or services after changes constitutes acceptance of the revised Terms.</P>
 
       <H2>Contact Us</H2>
-      <P>For any questions about these Terms, contact us at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
+      <P>For any questions about these Terms, contact us at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab &amp; Sind Bank, Kotkapura.</P>
     </LegalPage>
   );
 }

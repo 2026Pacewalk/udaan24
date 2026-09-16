@@ -9,7 +9,7 @@ export default function ShippingPolicy() {
 
       <H2>Service Delivery</H2>
       <UL>
-        <li><b>Offline (classroom) courses</b> are delivered at our centre — Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura — as per the batch schedule shared at the time of admission.</li>
+        <li><b>Offline (classroom) courses</b> are delivered at our centre — Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab &amp; Sind Bank, Kotkapura — as per the batch schedule shared at the time of admission.</li>
         <li><b>Online / hybrid courses</b> are delivered digitally through our student portal, live/recorded classes, and downloadable study materials.</li>
         <li><b>Course access, login credentials, and study materials</b> are activated after your payment is confirmed — usually <b>immediately to within 24 hours</b> of successful payment.</li>
         <li><b>Certificates and marksheets</b> are issued digitally through the student portal upon successful completion of the course requirements.</li>
@@ -22,7 +22,7 @@ export default function ShippingPolicy() {
       <P>After payment, you will receive your Student ID and login details. If you do not receive access within 24 hours of a successful payment, please contact us so we can activate it immediately.</P>
 
       <H2>Contact Us</H2>
-      <P>For any questions about course access or delivery, contact Udaan24 AI Institute at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
+      <P>For any questions about course access or delivery, contact Udaan24 AI Institute at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab &amp; Sind Bank, Kotkapura.</P>
     </LegalPage>
   );
 }

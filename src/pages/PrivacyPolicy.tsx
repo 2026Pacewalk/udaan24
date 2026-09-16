@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
       <P>We may update this Privacy Policy from time to time. The latest version will always be available on this page with its effective date.</P>
 
       <H2>Contact Us</H2>
-      <P>For any questions about this Privacy Policy or your data, contact Udaan24 AI Institute at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian Wala Chownk, Above Punjab &amp; Sind Bank, Kotkapura, Punjab 151204.</P>
+      <P>For any questions about this Privacy Policy or your data, contact Udaan24 AI Institute at info@udaan24.com or +91 97803 16116, +91 97803 16119, Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab &amp; Sind Bank, Kotkapura.</P>
     </LegalPage>
   );
 }
