@@ -12,10 +12,12 @@ import mysql from "mysql2/promise";
 const KEEP_CODE = "UAN24-KKP";
 const REMOVE_CODES = ["UAN24-BTI", "UAN24-FDR", "UAN24-LDH"];
 
+const NEW_NAME = "Udaan24 AI Institute";
 const NEW_ADDRESS = "Batian wala Chownk, Jaitu Road, opposite Car Parking, Above Punjab & Sind Bank";
 const NEW_CITY = "Kotkapura";
 const NEW_STATE = "Punjab";
 const NEW_PHONE = "+91 97803 16116";
+const NEW_OWNER = ""; // clear the demo contact person (card row is hidden when empty)
 
 // table -> centre-id column(s) to remap
 const REFS: Array<[string, string[]]> = [
@@ -49,10 +51,10 @@ async function main() {
 
     // 1) Update the kept centre.
     await c.query(
-      "UPDATE centers SET address=?, city=?, state=?, owner_phone=? WHERE id=?",
-      [NEW_ADDRESS, NEW_CITY, NEW_STATE, NEW_PHONE, keepId],
+      "UPDATE centers SET name=?, address=?, city=?, state=?, owner_phone=?, owner_name=? WHERE id=?",
+      [NEW_NAME, NEW_ADDRESS, NEW_CITY, NEW_STATE, NEW_PHONE, NEW_OWNER, keepId],
     );
-    console.log("updated centre", keepId, "address/phone");
+    console.log("updated centre", keepId, "name/address/phone/owner");
 
     // 2) Remap all references off the removed centres onto the kept one.
     if (removeIds.length) {
